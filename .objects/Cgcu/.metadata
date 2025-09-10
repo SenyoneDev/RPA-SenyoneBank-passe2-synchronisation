@@ -1,0 +1,11 @@
+﻿{
+  "Id": "CgcuutNjA06ILmRd-ugbwA",
+  "Reference": "PYgaSBL0n0S8WWPd8ffXng/CgcuutNjA06ILmRd-ugbwA",
+  "Name": "Terminal Emulator",
+  "Type": "App",
+  "Created": "2021-01-19T08:02:28.8505188Z",
+  "CreatedBy": [
+    "UiPath.Platform, Version=20.10.4.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "Updated": "2021-01-19T08:02:28.8505188Z"
+}

@@ -1,0 +1,14 @@
+﻿{
+  "Id": "3VAyahsnJEWu1huM5PiyoA",
+  "Reference": "PYgaSBL0n0S8WWPd8ffXng/3VAyahsnJEWu1huM5PiyoA",
+  "ParentRef": "PYgaSBL0n0S8WWPd8ffXng/Fxjno0MjWkO7CNB0wKKewg",
+  "Name": "Terminal Emulator Screen",
+  "Type": "Screen",
+  "TaxonomyType": "Screen",
+  "Created": "2021-01-19T08:02:56.225614Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=20.10.6.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=20.10.4.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "Updated": "2021-01-19T08:02:56.225614Z"
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TargetApp ContentHash="mdiL6avC-029xbVlnUwpAA" FilePath="[in_AppPath]" Selector="&lt;wnd app='terminalemulator.exe' cls='ConsoleWindowClass' omit:title='C:\DEMO_APP\TerminalEmulator.exe' /&gt;" xmlns="http://schemas.uipath.com/workflow/activities/uix">
+  <imageRef attrName="IconBase64" xmlns="">0-VJNeoC3ZUGEUc_fkMksZA</imageRef>
+  <imageRef attrName="InformativeScreenshot" originalValue="5ff1eaee7d1204de9c8e3355adc03cf2.png" xmlns="">0PqeXlgaNgEOqIH3AzE88Hg</imageRef>
+</TargetApp>

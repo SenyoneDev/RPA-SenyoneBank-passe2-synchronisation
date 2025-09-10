@@ -1,0 +1,12 @@
+﻿{
+  "Id": "Fxjno0MjWkO7CNB0wKKewg",
+  "Reference": "PYgaSBL0n0S8WWPd8ffXng/Fxjno0MjWkO7CNB0wKKewg",
+  "ParentRef": "PYgaSBL0n0S8WWPd8ffXng/CgcuutNjA06ILmRd-ugbwA",
+  "Name": "1.0.0",
+  "Type": "AppVersion",
+  "Created": "2021-01-19T08:02:29.5013192Z",
+  "CreatedBy": [
+    "UiPath.Platform, Version=20.10.4.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "Updated": "2021-01-19T08:02:29.5013192Z"
+}
