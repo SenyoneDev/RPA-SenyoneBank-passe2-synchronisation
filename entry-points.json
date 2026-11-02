@@ -1,0 +1,58 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "5e9deb8c-2c68-43b5-8a03-d1c3d94f996c",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_str_OrchestratorQueueName": {
+            "type": "string",
+            "description": "Orchestrator Queue Name for the process, option to rewrite config value"
+          },
+          "in_str_SEEmailReciever": {
+            "type": "string",
+            "description": "Systeme exception email reciever, option to rewrite config"
+          },
+          "in_str_BREMailReciever": {
+            "type": "string",
+            "description": "Business Rule exception email reciever"
+          },
+          "in_str_SREmailReciever": {
+            "type": "string",
+            "description": "System exception email receiver "
+          },
+          "in_bool_TestMode": {
+            "type": "boolean",
+            "description": "Flag indicating whether the process must be executed on Test mode or not",
+            "x-default-expression": "False",
+            "default": false
+          },
+          "in_bool_DevMode": {
+            "type": "boolean",
+            "description": "Flag indicating whether the process must be executed on Dev mode or not",
+            "x-default-expression": "True",
+            "default": true
+          },
+          "in_int_MaxTransactionsProcessed": {
+            "type": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647,
+            "description": "Use 0 for no max limit for the processed transactions",
+            "x-default-expression": "0",
+            "default": 0
+          },
+          "in_str_ConfigPath": {
+            "type": "string",
+            "description": "Contains the full path to the config file. By default will be assigned \"Accelerated\\Config_AR.xlsx\"",
+            "x-default-expression": "\"Configuration/Config_AR.xlsx\"",
+            "default": "Configuration/Config_AR.xlsx"
+          }
+        },
+        "required": []
+      }
+    }
+  ]
+}

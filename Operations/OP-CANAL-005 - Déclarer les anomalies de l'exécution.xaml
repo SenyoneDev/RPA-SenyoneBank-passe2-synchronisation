@@ -1,0 +1,457 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="OP_CANAL_005___Déclarer_les_anomalies_de_l_exécution" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_dt_Tickets" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_int_EchecsOuverture" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_str_ReglageApplique" Type="OutArgument(x:String)" />
+    <x:Property Name="in_int_RetryIntervalSeconds" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_int_RetryCount" Type="InArgument(x:Int32)" />
+    <x:Property Name="out_int_TicketsOuverts" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_bool_Succes" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="in_dt_Anomalies" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_str_ExtractionId" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SyncSecretMachine" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_MiddleOfficeApiBaseUrl" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>OP_CANAL_005___Déclarer_les_anomalies_de_l_exécution_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Web.Activities.Http.Models</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Web.Activities.Http</x:String>
+      <x:String>UiPath.Sdk.Activities</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection.Contracts</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="OP_CANAL_005___Déclarer_les_anomalies_de_l_exécution" sap:VirtualizedContainerService.HintSize="925,5204" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="bool_ErreurDefinitive" />
+      <Variable x:TypeArguments="x:Int32" Name="int_TentativeCourante" />
+      <Variable x:TypeArguments="x:String" Name="str_MotifIgnore" />
+      <Variable x:TypeArguments="x:String" Name="str_CorpsReponse" />
+      <Variable x:TypeArguments="x:Int32" Name="int_CodeStatutHttp" />
+      <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="http_Reponse" />
+      <Variable x:TypeArguments="x:String" Name="str_CorpsJson" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <If Condition="[in_dt_Anomalies.Rows.Count = 0 OrElse in_dt_Anomalies.Rows.Count &gt; 200 OrElse in_dt_Anomalies.AsEnumerable().Any(Function(r) Not System.Text.RegularExpressions.Regex.IsMatch(r(&quot;Motif&quot;).ToString(), &quot;^[^\x00-\x1F\x7F]{1,500}$&quot;)) OrElse in_dt_Anomalies.AsEnumerable().Any(Function(r) Not {&quot;BRE-001&quot;,&quot;BRE-002&quot;,&quot;BRE-009&quot;,&quot;BRE-007&quot;}.Contains(r(&quot;CodeRegle&quot;).ToString()))]" DisplayName="If-  Liste à ne pas envoyer ? (vide, &gt; 200, motif ou code règle invalide)" sap:VirtualizedContainerService.HintSize="620,5181" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="618,1596" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MultipleAssign DisplayName=" Calculer out_bool_Succes (liste valide) et mettre 0 ticket ouvert" sap:VirtualizedContainerService.HintSize="584,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[out_bool_Succes]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Boolean">[in_dt_Anomalies.Rows.Count &lt;= 200 AndAlso Not in_dt_Anomalies.AsEnumerable().Any(Function(r) Not System.Text.RegularExpressions.Regex.IsMatch(r("Motif").ToString(), "^[^\x00-\x1F\x7F]{1,500}$")) AndAlso Not in_dt_Anomalies.AsEnumerable().Any(Function(r) Not {"BRE-001","BRE-002","BRE-009","BRE-007"}.Contains(r("CodeRegle").ToString()))]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_int_TicketsOuverts]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+          </ui:MultipleAssign>
+          <If Condition="[in_dt_Anomalies.Rows.Count &gt; 200]" DisplayName="If-Plus de 200 anomalies ? → refus en bloc" sap:VirtualizedContainerService.HintSize="584,455" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;OP-CANAL-005 : liste d'anomalies refusée en bloc (&quot; &amp; in_dt_Anomalies.Rows.Count.ToString &amp; &quot; &gt; 200), jamais envoyée&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[in_dt_Anomalies.AsEnumerable().Any(Function(r) Not System.Text.RegularExpressions.Regex.IsMatch(r(&quot;Motif&quot;).ToString(), &quot;^[^\x00-\x1F\x7F]{1,500}$&quot;))]" DisplayName="If-Motif invalide (vide ou &gt; 500 caractères) ? → refus en bloc" sap:VirtualizedContainerService.HintSize="584,455" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;OP-CANAL-005 : liste d'anomalies refusée en bloc, motif invalide detecte (vide, plus de 500 caracteres, ou caractere de controle comme un retour a la ligne)&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[in_dt_Anomalies.AsEnumerable().Any(Function(r) Not {&quot;BRE-001&quot;,&quot;BRE-002&quot;,&quot;BRE-009&quot;,&quot;BRE-007&quot;}.Contains(r(&quot;CodeRegle&quot;).ToString()))]" DisplayName="If -Code règle hors catalogue (BRE-001/002/007/009) ? → refus en bloc" sap:VirtualizedContainerService.HintSize="584,446" sap2010:WorkflowViewState.IdRef="If_6">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[&quot;OP-CANAL-005 : liste d'anomalies refusée en bloc, code regle inconnu detecte (non couvert par le catalogue BRE-001/BRE-002/BRE-009/BRE-007)&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="618,3455" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode Code="Dim anomalies As New List(Of Object)&#xA;For Each row As System.Data.DataRow In dtAnomalies.Rows&#xA;    Dim codeRegle As String = row(&quot;CodeRegle&quot;).ToString()&#xA;    Dim kind As String&#xA;    Select Case codeRegle&#xA;        Case &quot;BRE-001&quot;&#xA;            kind = &quot;entry-skipped&quot;&#xA;        Case &quot;BRE-002&quot;&#xA;            kind = &quot;entry-error&quot;&#xA;        Case &quot;BRE-009&quot;&#xA;            kind = &quot;unicity&quot;&#xA;        Case &quot;BRE-007&quot;&#xA;            kind = &quot;statement-unbalanced&quot;&#xA;        Case Else&#xA;            Throw New Exception(&quot;OP-CANAL-005 : code règle d'anomalie inconnu, non couvert par le catalogue : &quot; &amp; codeRegle)&#xA;    End Select&#xA;    anomalies.Add(New Dictionary(Of String, Object) From {&#xA;        {&quot;kind&quot;, kind},&#xA;        {&quot;refPsp&quot;, row(&quot;RefPsp&quot;).ToString()},&#xA;        {&quot;motif&quot;, row(&quot;Motif&quot;).ToString()}&#xA;    })&#xA;Next&#xA;&#xA;Dim enveloppe As New Dictionary(Of String, Object) From {&#xA;    {&quot;version&quot;, 1},&#xA;    {&quot;extractionId&quot;, If(String.IsNullOrEmpty(extractionId), CObj(Nothing), extractionId)},&#xA;    {&quot;anomalies&quot;, anomalies}&#xA;}&#xA;&#xA;corpsJson = Newtonsoft.Json.JsonConvert.SerializeObject(enveloppe)" ContinueOnError="False" DisplayName="Invoke Code-Mapper BRE-00x → kind (entry-skipped, entry-error, unicity, statement-unbalanced) et construire le JSON du rapport" sap:VirtualizedContainerService.HintSize="584,287" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="dtAnomalies">[in_dt_Anomalies]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="extractionId">[in_str_ExtractionId]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="corpsJson">[str_CorpsJson]</OutArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+          <Assign sap2010:Annotation.AnnotationText="Initialiser le compteur de tentatives à 0" sap:VirtualizedContainerService.HintSize="584,206" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[int_TentativeCourante]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[Not (out_bool_Succes OrElse bool_ErreurDefinitive) AndAlso int_TentativeCourante &lt; in_int_RetryCount]" DisplayName="While ni succès ni erreur définitive : envoyer le rapport d'anomalies (avec retry)" sap:VirtualizedContainerService.HintSize="584,2456" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+            <ui:InterruptibleWhile.Body>
+              <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="582,2325" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap2010:Annotation.AnnotationText="Incrémenter le compteur de tentatives" sap:VirtualizedContainerService.HintSize="548,206" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[int_TentativeCourante]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[int_TentativeCourante + 1]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <TryCatch DisplayName="Try Catch POST du rapport d'anomalies" sap:VirtualizedContainerService.HintSize="548,1378" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Essayer" sap:VirtualizedContainerService.HintSize="546,747" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="Appeler le middle-office pour déclarer les anomalies" sap:VirtualizedContainerService.HintSize="512,687" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="False" DisableSslVerification="False" DisplayName="HTTP Request-/api/sync/anomaly-report - Déclarer les anomalies (Bearer SyncSecretMachine)" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Authorization&quot;, &quot;Bearer &quot; &amp; in_str_SyncSecretMachine } }]" sap:VirtualizedContainerService.HintSize="478,433" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[in_str_MiddleOfficeApiBaseUrl &amp; &quot;/api/sync/anomaly-report&quot;]" Result="[http_Reponse]" RetryCount="1" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[str_CorpsJson]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+                          <uwah:NetHttpRequest.TimeoutInMiliseconds>
+                            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+                            </InArgument>
+                          </uwah:NetHttpRequest.TimeoutInMiliseconds>
+                        </uwah:NetHttpRequest>
+                        <ui:MultipleAssign DisplayName=" Capturer le code HTTP et le corps de la réponse" sap:VirtualizedContainerService.HintSize="478,171" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                          <ui:MultipleAssign.AssignOperations>
+                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[int_CodeStatutHttp]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[CInt(http_Reponse.StatusCode)]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_CorpsReponse]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[http_Reponse.TextContent]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                            </scg:List>
+                          </ui:MultipleAssign.AssignOperations>
+                        </ui:MultipleAssign>
+                      </Sequence>
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Catch - Exception  erreur réseau → simuler un 503 (retry)" sap:VirtualizedContainerService.HintSize="546,406" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:MultipleAssign DisplayName="Forcer code 503 et motif « erreur réseau »" sap:VirtualizedContainerService.HintSize="512,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[int_CodeStatutHttp]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:Int32">503</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[str_MotifIgnore]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">erreur reseau lors de l'appel au middle-office</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                          </ui:MultipleAssign>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="512,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;OP-CANAL-005 : erreur réseau lors de l'appel au middle-office, nouvelle tentative si possible&quot;]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Enfin" sap:VirtualizedContainerService.HintSize="546,90" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
+                <ui:InvokeCode Code="boolSucces = False&#xA;boolErreurDefinitive = False&#xA;intTicketsOuverts = 0&#xA;intEchecsOuverture = 0&#xA;strReglageApplique = &quot;&quot;&#xA;dtTickets = New System.Data.DataTable(&quot;Tickets&quot;)&#xA;dtTickets.Columns.Add(&quot;AnomalyKey&quot;, GetType(String))&#xA;dtTickets.Columns.Add(&quot;JiraKey&quot;, GetType(String))&#xA;dtTickets.Columns.Add(&quot;Url&quot;, GetType(String))&#xA;dtTickets.Columns.Add(&quot;Created&quot;, GetType(Boolean))&#xA;&#xA;Select Case intCodeStatutHttp&#xA;    Case 200&#xA;        boolSucces = True&#xA;        Dim reponse As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(strCorpsReponse)&#xA;        If reponse(&quot;tickets&quot;) IsNot Nothing Then&#xA;            intTicketsOuverts = CType(reponse(&quot;tickets&quot;), Newtonsoft.Json.Linq.JArray).Count&#xA;            For Each t As Newtonsoft.Json.Linq.JToken In CType(reponse(&quot;tickets&quot;), Newtonsoft.Json.Linq.JArray)&#xA;                Dim ligne As System.Data.DataRow = dtTickets.NewRow()&#xA;                ligne(&quot;AnomalyKey&quot;) = t(&quot;anomalyKey&quot;).ToString()&#xA;                ligne(&quot;JiraKey&quot;) = t(&quot;jiraKey&quot;).ToString()&#xA;                ligne(&quot;Url&quot;) = t(&quot;url&quot;).ToString()&#xA;                ligne(&quot;Created&quot;) = CBool(t(&quot;created&quot;))&#xA;                dtTickets.Rows.Add(ligne)&#xA;            Next&#xA;        End If&#xA;        If reponse(&quot;failed&quot;) IsNot Nothing Then&#xA;            intEchecsOuverture = CType(reponse(&quot;failed&quot;), Newtonsoft.Json.Linq.JArray).Count&#xA;        End If&#xA;        If reponse(&quot;mode&quot;) IsNot Nothing Then&#xA;            strReglageApplique = reponse(&quot;mode&quot;).ToString()&#xA;        End If&#xA;    Case 400&#xA;        boolErreurDefinitive = True&#xA;        strMotifIgnore = &quot;corps invalide (400)&quot;&#xA;    Case 401&#xA;        boolErreurDefinitive = True&#xA;        strMotifIgnore = &quot;secret refuse (401)&quot;&#xA;    Case 404&#xA;        boolErreurDefinitive = True&#xA;        strMotifIgnore = &quot;extraction inconnue (404)&quot;&#xA;    Case 503&#xA;        strMotifIgnore = &quot;panne transitoire (503)&quot;&#xA;    Case 0&#xA;        strMotifIgnore = If(String.IsNullOrEmpty(strMotifIgnore), &quot;erreur reseau&quot;, strMotifIgnore)&#xA;    Case Else&#xA;        boolErreurDefinitive = True&#xA;        strMotifIgnore = &quot;code HTTP inattendu &quot; &amp; intCodeStatutHttp.ToString()&#xA;End Select" ContinueOnError="False" DisplayName="Invoke Code-Interpréter le code HTTP, lire les tickets Jira créés (dt_Tickets), les échecs et le mode appliqué" sap:VirtualizedContainerService.HintSize="548,287" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="intCodeStatutHttp">[int_CodeStatutHttp]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="strCorpsReponse">[str_CorpsReponse]</InArgument>
+                    <OutArgument x:TypeArguments="x:Boolean" x:Key="boolSucces">[out_bool_Succes]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="intTicketsOuverts">[out_int_TicketsOuverts]</OutArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="strMotifIgnore">[str_MotifIgnore]</InOutArgument>
+                    <OutArgument x:TypeArguments="x:Boolean" x:Key="boolErreurDefinitive">[bool_ErreurDefinitive]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="intEchecsOuverture">[out_int_EchecsOuverture]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="strReglageApplique">[out_str_ReglageApplique]</OutArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtTickets">[out_dt_Tickets]</OutArgument>
+                  </ui:InvokeCode.Arguments>
+                </ui:InvokeCode>
+                <If Condition="[Not (out_bool_Succes OrElse bool_ErreurDefinitive) AndAlso int_TentativeCourante &lt; in_int_RetryCount]" DisplayName="If Attendre puis réessayer ? (échec transitoire et tentatives restantes)" sap:VirtualizedContainerService.HintSize="548,394" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Delay Duration="[TimeSpan.FromSeconds(in_int_RetryIntervalSeconds)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </ui:InterruptibleWhile.Body>
+          </ui:InterruptibleWhile>
+          <If Condition="[Not out_bool_Succes]" DisplayName="If Déclaration non aboutie ? → journaliser en Warn (non bloquant)" sap:VirtualizedContainerService.HintSize="584,446" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="451,226" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message- Déclaration des anomalies non aboutie + motif (non bloquant)" sap:VirtualizedContainerService.HintSize="417,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;OP-CANAL-005 : declaration des anomalies non aboutie (&quot; &amp; str_MotifIgnore &amp; &quot;), non bloquant&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="451,90" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

@@ -1,14 +1,17 @@
 {
-  "name": "SenyoneFrameworkPerformerTemplate",
+  "name": "SenyoneReFrameworkTemplate",
   "projectId": "cddff25d-700c-4efe-97ce-3e4578223d12",
   "description": "Blank Process",
   "main": "Main.xaml",
   "dependencies": {
+    "UiPath.AzureActiveDirectory.Activities": "[1.5.0]",
     "UiPath.Excel.Activities": "[3.2.1]",
     "UiPath.IntegrationService.Activities": "[1.16.0]",
-    "UiPath.Mail.Activities": "[2.3.10]",
-    "UiPath.System.Activities": "[25.8.0]",
-    "UiPath.UIAutomation.Activities": "[25.10.13]"
+    "UiPath.Mail.Activities": "[2.10.11]",
+    "UiPath.MicrosoftOffice365.Activities": "[3.10.10]",
+    "UiPath.System.Activities": "[26.6.3]",
+    "UiPath.UIAutomation.Activities": "[26.10.2]",
+    "UiPath.WebAPI.Activities": "[2.5.2]"
   },
   "webServices": [],
   "entitiesStores": [],
@@ -37,13 +40,76 @@
     "projectProfile": "Developement",
     "outputType": "Process",
     "libraryOptions": {
-      "includeOriginalXaml": false,
       "privateWorkflows": []
     },
     "processOptions": {
       "ignoredFiles": []
     },
-    "fileInfoCollection": [],
+    "fileInfoCollection": [
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "ee8f13ac-3525-49a6-8048-cb35f42e0958",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPCANAL002_Rendrelerelevedesmouvements.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "bc0a620f-901f-490f-a9ca-7583d511800e",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPCANAL003-Publieruneetapeduderoule.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "c874bd2f-821c-4b56-b438-cc1fc7bcb13c",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPCANAL005_Declareranomalies.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "fb1a05f0-f856-48a1-a8b3-f6c9422fa7b3",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPMO001_ConnexionMiddleOffice.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "e31c0fe9-9757-48b4-aaa4-10322bf1a28d",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPBO008_Exporterlesmouvementsducompte.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "f6d29ef4-7f7d-4c7c-b183-bd1d6ab37cdb",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPMO004_LireCockpitExtraction - Copier (1).xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "de8f914c-706c-4a3f-8383-a715d5e258e5",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPMO005_DeconnexionMiddleOffice.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "250eb52d-50f3-4a63-bb24-fc9a69bf52de",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Operations\\Test_OPCANAL004_LireAvancementSynchronisation.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "e5de2170-0f0b-440a-a2a1-22d79c81c6c5",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Dispatcher\\TestDispatcherBO.xaml"
+      }
+    ],
     "saveToCloud": false
   },
   "arguments": {
@@ -83,7 +149,7 @@
       "output": []
     }
   ],
-  "isTemplate": true,
+  "isTemplate": false,
   "templateProjectData": {},
   "publishData": {},
   "targetFramework": "Windows"

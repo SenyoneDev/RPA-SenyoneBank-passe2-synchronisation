@@ -1,0 +1,240 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="OP_MO_002___Lire_le_cockpit_d_une_extraction" this:OP_MO_002___Lire_le_cockpit_d_une_extraction.in_str_ExtractionId="EXT-20260821-143028" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ui_moBrowser" Type="InArgument(ui:UiElement)" />
+    <x:Property Name="out_str_LienCockpit" Type="OutArgument(x:String)" />
+    <x:Property Name="out_str_EtatEnsemble" Type="OutArgument(x:String)" />
+    <x:Property Name="in_dict_config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_str_ExtractionId" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>OP_MO_002___Lire_le_cockpit_d_une_extraction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="OP_MO_004__Lire_le_cockpit_d_une_extraction" sap:VirtualizedContainerService.HintSize="1065,1901" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_TexteSynthese" />
+      <Variable x:TypeArguments="x:String" Name="str_UrlCockpit" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;OP-MO-002 : lecture du cockpit pour l'extraction &quot; &amp; in_str_ExtractionId]" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Cockpit agent — Senyone Bank" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,907" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[in_ui_moBrowser]" InteractionMode="DebuggerApi" IsDisplayNameAuto="True" ScopeGuid="02bae250-415f-4c49-970a-0b38b37e3dc2" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="450,776" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Extractions'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="02bae250-415f-4c49-970a-0b38b37e3dc2" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/agent" CVScreenId="7ed861be-f7a0-4f51-818a-306a8cb8da48" CvTextArea="74, 401, 118, 21" CvTextArgument="Extractions" CvType="Text" DesignTimeRectangle="77, 398, 114, 30" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='nav-extractions' tag='SPAN' /&gt;" Guid="a6d9456b-5c66-4b64-9938-f571b707cac0" ImageBase64="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" InformativeScreenshot="e23a09dc672fbbfd8e2fb86aef4111a5.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Cockpit agent — Senyone Bank' /&gt;" SearchSteps="Selector, Image, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="7ed861be-f7a0-4f51-818a-306a8cb8da48" CvElementArea="39, 396, 27, 31" CvType="Icon" DesignTimeRectangle="41, 401, 24, 24" ElementType="Icon" FullSelectorArgument="&lt;webctrl parentid='nav-extractions' tag='svg' /&gt;" Guid="b1aba86c-c4b1-4003-a243-7a924436a687" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAD0SURBVEhLY/hPY8CAzHn95u3/6qbO/04+Yf/1rVwJ4ojETLAefADFgrLaFgxDCGGf0Hi8lqBYYO8ZDNZ05vwlZGEMADc8LB5M+4Yn/H/z9h26MjBAsQCmkRCAqQMZ6h0SB2aDaGyWUGQBCBCyhCwL7D1DUIISFAew4AqOSUVRS5YFhBIDMiDLApCLKxra/zt4QXyCjpEBWRbgAtj0D3MLopJz4GIgNiFxdP0gMLAWkAqw6R9YC3AFBS5xdP0gMLAWkAqw6aevBeilJCngxOlzYL0gM5ABigWESklicHldK7KRqBYQKiXxYVBDoaa5C3+FQwsAAN+sVeLn8KqaAAAAAElFTkSuQmCC" SearchSteps="Selector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Toggle Sidebar'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="02bae250-415f-4c49-970a-0b38b37e3dc2" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/agent/extractions/EXT-20260821-143028" CVScreenId="03e449d0-9d1a-499d-ad6a-c7e48ce520ae" CvElementArea="47, 237, 30, 30" CvType="Icon" DesignTimeRectangle="41, 231, 42, 42" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='sidebar-collapse' tag='BUTTON' /&gt;" Guid="65521474-5925-4139-b7d1-e1201f05db5f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAJQSURBVFhH1dhLUuMwEIDh3AHWwAGpChcMi4TLxE6VH2FvqmXJ6qcsKcGBxb+IkLu/imtqmNl9D+0k6pt0HXReSXlOpOzmjRfXTvwAHhYDS5EFWL5fZEKVYVXIO2IFNPVtViF17NUXzxQcyUOvITRE1J1vTJmJww4fxu4iMgGFJWJxacpckoTiNoRCyuxyKH9wa6j++il0k28TUuaTJPD/Qse+0eugM0kC9Phzbhafz1OQDgo/GFehEluXMl/UOiyuCvqxf5/eXl+m5+enquBZmCH2JKDQOnTBzki+uDYbK5GF0Gb5Jr+OB/JKw3L5qtlr75rpdDy4uzBL7LkZ6rEWyDrnyKGfC/fDZygLOvRQfEgNQYfuTLLO4RlSAhqTSAcdcqF4gVu8BtWRZI6yw1nAZEPXsRQas841JJkjdniHh2JsHRQ+50CVGWIOSUIDth6acW5l35fI0AzNxFoLrHMr/b7+bW4O7VHyPtqvIA1oS4ZqC3LPrfD9HCSFemy/lF6Qc24V78d9RdAeSmAtkHVupUIVXBqawFog69xKQBUYLwMawRbIOqfFWQTqd3IYT4caYAtknfPnxRy0i8N49A8ThzJw+DXvePrUFysoHjwLd2FWLjL+zZSDHdppf8dfnGFWDrIKGrC3/lOkFGlC17D3iO/TmpEXlwnF8SWl8Xk5YeQI/+3IL/yFFqBHeuhFXHxkGtJB4WDGPhqsAyM0fHgYOA2ErgTqsRT8W+h5tvWaOVJCV9GleP5cHo4j01BeEp7AFMBCGFgO5XEEj9/PjANDP9eLdh1dOd1iAAAAAElFTkSuQmCC" InformativeScreenshot="e45c5e5f864fd889b35c0adc51c5e973.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Extraction de l&amp;apos;arrêté — Senyone Bank' /&gt;" SearchSteps="Selector, Image, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="03e449d0-9d1a-499d-ad6a-c7e48ce520ae" CvTextArea="99, 240, 234, 21" CvTextArgument="Portail Collaborateurs" CvType="Text" DesignTimeRectangle="101, 237, 231, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='P' type='' class='text-sm font-medium text-muted-foreground' aaname='Portail Collaborateurs' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Portail Collaborateurs' /&gt;" Guid="c71a3f16-d9f7-42ba-8b64-0f3cd3a01e70" ImageBase64="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" SearchSteps="FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'EXT-20260821-143028'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="02bae250-415f-4c49-970a-0b38b37e3dc2" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/agent/extractions" CVScreenId="0c615931-291b-4feb-bc05-5c3b990e87a3" CvTextArea="195, 870, 244, 22" CvTextArgument="[string.Format(&quot;{0}&quot;, in_str_ExtractionId)]" CvType="Text" DesignTimeRectangle="199, 738, 239, 30" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzyAccuracy="1" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='SPAN' aaname='{0}' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='{0}' matching:innertext='fuzzy' fuzzylevel:innertext='0.0' visibleinnertext='{0}' matching:visibleinnertext='fuzzy' fuzzylevel:visibleinnertext='0.0' /&gt;&quot;, in_str_ExtractionId)]" Guid="28907593-64cb-4cf2-8a5d-8275408db6d5" InformativeScreenshot="1ae6648bfc007e4a84acb641d590cadc.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Extractions — Senyone Bank' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Complete" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NGetText DisplayName="Get Text 'Compte rendu d'exécution'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,134" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="02bae250-415f-4c49-970a-0b38b37e3dc2" TextString="[str_TexteSynthese]" Version="V5">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/agent/extractions/EXT-20260821-143028" CVScreenId="69d49cf4-6fc1-45c4-bf71-d38303c37a0a" CvType="AnyWordGroup" DesignTimeRectangle="151, 578, 1618, 30" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl idx='2' parentid='extraction-report' tag='P' /&gt;" Guid="f4eeb69a-9718-486e-9998-ee2265e9ab8e" InformativeScreenshot="8e6b28f506e8e2f43bea6630d532a765.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Extraction de l&amp;apos;arrêté — Senyone Bank' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="69d49cf4-6fc1-45c4-bf71-d38303c37a0a" CvTextArea="147, 545, 312, 24" CvTextArgument="COMPTE RENDU D'EXECUTION" CvType="Text" DesignTimeRectangle="151, 548, 1618, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='extraction-report' tag='P' type='' class='text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground' aaname='Compte rendu d&amp;apos;exécution' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='COMPTE RENDU D&amp;apos;EXÉCUTION' /&gt;" Guid="2bb97ce7-1572-49da-98d7-f662aa705ab8" ImageBase64="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" SearchSteps="FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+            </uix:NGetText>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-11, -11, 1942, 1030" BrowserType="Edge" IconBase64="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" InformativeScreenshot="48decb1b9d3314f8d1bdb3a2862e928d.jpg" Selector="&lt;html app='msedge.exe' title='Cockpit agent — Senyone Bank' /&gt;" Url="[in_dict_config(&quot;MiddleOfficeBaseUrl&quot;).ToString]" Version="V3">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+    <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_str_EtatEnsemble]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If(str_TexteSynthese.Trim = "Toutes les écritures traitées sont passées.", "conforme", If(str_TexteSynthese.Trim = "Écritures non passées : à examiner.", "anomalie", "incident"))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[out_str_EtatEnsemble = &quot;incident&quot;]" sap:VirtualizedContainerService.HintSize="452,455" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;OP-MO-004 : état cockpit détecté par élimination (incident) : &quot; &amp; str_TexteSynthese]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Assign sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_str_LienCockpit]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Left(in_dict_config("MiddleOfficeBaseUrl").ToString, in_dict_config("MiddleOfficeBaseUrl").ToString.LastIndexOf("/")) &amp; "/agent/extractions/" &amp; in_str_ExtractionId]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>

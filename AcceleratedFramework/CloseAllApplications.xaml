@@ -1,4 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CloseAllApplications" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1203,1139" sap2010:WorkflowViewState.IdRef="CloseAllApplications_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CloseAllApplications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_dict_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1203,1139</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>CloseAllApplications_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="54">
       <x:String>System.Activities</x:String>
@@ -40,10 +48,16 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="116">
       <AssemblyReference>FDJ.Workday</AssemblyReference>
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
@@ -94,11 +108,63 @@
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: Here all working applications will be soft closed&#xA;&#xA;Implementation Instructions:&#xA;&#xA;For every different application to be closed surround with a Try Catch and in the Catch, set bool_Close[Application] to &quot;False&quot;&#xA;&#xA;For more information, see the Confluence page about this workflow." DisplayName="CloseAllApplications" sap:VirtualizedContainerService.HintSize="1638,748" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence sap2010:Annotation.AnnotationText="Description: Here all working applications will be soft closed&#xA;&#xA;Implementation Instructions:&#xA;&#xA;For every different application to be closed surround with a Try Catch and in the Catch, set bool_Close[Application] to &quot;False&quot;&#xA;&#xA;For more information, see the Confluence page about this workflow." DisplayName="CloseAllApplications" sap:VirtualizedContainerService.HintSize="925,8355" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_MoEchecRaison" />
+      <Variable x:TypeArguments="ui:UiElement" Name="ui_MoBrowser" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_MoSessionOpen" />
+      <Variable x:TypeArguments="x:String" Name="str_moMatricule" />
+      <Variable x:TypeArguments="ss:SecureString" Name="secstr_moPassword" />
+      <Variable x:TypeArguments="x:Int32" Name="int_IssueInconnue" />
+      <Variable x:TypeArguments="x:Int32" Name="int_EnErreur" />
+      <Variable x:TypeArguments="x:Int32" Name="int_Sautees" />
+      <Variable x:TypeArguments="x:Int32" Name="int_Rejetees" />
+      <Variable x:TypeArguments="x:Int32" Name="int_Comptabilisees" />
+      <Variable x:TypeArguments="x:Int32" Name="int_Traitees" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_AnomaliesPasse1" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_ResultatsPasse1" />
+      <Variable x:TypeArguments="x:String" Name="str_ReglageApplique" />
+      <Variable x:TypeArguments="x:Int32" Name="int_EchecsOuverture" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Tickets" />
+      <Variable x:TypeArguments="x:String" Name="str_ResultatsExtLocalPath" />
+      <Variable x:TypeArguments="x:String" Name="str_LienCockpit" />
+      <Variable x:TypeArguments="x:String" Name="str_EtatEnsemble" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_DoitEnvoyerCompteRendu" />
+      <Variable x:TypeArguments="x:String" Name="str_CsvReleves" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Releves" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_CloseSuccessful" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_SessionFermee" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_SuccesAnomalies" />
+      <Variable x:TypeArguments="x:Int32" Name="int_TicketsOuverts" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_AnomaliesCompteRendu" />
+      <Variable x:TypeArguments="x:String" Name="str_AnomaliesHtml" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -106,7 +172,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign | Init Boolean" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign | Init Boolean" sap:VirtualizedContainerService.HintSize="584,175" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Boolean">[bool_CloseSuccessful]</OutArgument>
       </Assign.To>
@@ -114,7 +180,12 @@
         <InArgument x:TypeArguments="x:Boolean">True</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence sap2010:Annotation.AnnotationText="To use correctly the following if, it is recommended to check the closing of the application with an activity that gives as Output a Boolean variable (e. g. Element Exists)." DisplayName="Close Applications" sap:VirtualizedContainerService.HintSize="450,178" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence sap2010:Annotation.AnnotationText="To use correctly the following if, it is recommended to check the closing of the application with an activity that gives as Output a Boolean variable (e. g. Element Exists)." DisplayName="Close Applications" sap:VirtualizedContainerService.HintSize="584,7716" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:List(x:String)" Name="listStr_EmailAttachments" />
+        <Variable x:TypeArguments="x:String" Name="str_EmailBody" />
+        <Variable x:TypeArguments="x:String" Name="str_EmailSubject" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -122,8 +193,446 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-BO-009 - Se deconnecter au back-office - Invoke Workflow File (Operations\OP-BO-009 - Se deconnecter au back-office.xaml)" sap:VirtualizedContainerService.HintSize="550,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Operations\OP-BO-009 - Se deconnecter au back-office.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_SessionFermee">[bool_SessionFermee]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_str_BackOfficeUrl">[in_dict_Config("BackOfficeBaseURL").ToString]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-CANAL-005 - Déclarer les anomalies de l'exécution - Invoke Workflow File (Operations\OP-CANAL-005 - Déclarer les anomalies de l'exécution.xaml)" sap:VirtualizedContainerService.HintSize="550,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Operations\OP-CANAL-005 - Déclarer les anomalies de l'exécution.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_Tickets">[dt_Tickets]</OutArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_EchecsOuverture">[int_EchecsOuverture]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_str_ReglageApplique">[str_ReglageApplique]</OutArgument>
+          <InArgument x:TypeArguments="x:Int32" x:Key="in_int_RetryIntervalSeconds">[CInt(in_dict_Config("OP_CANAL_005_RetryIntervalSeconds"))]</InArgument>
+          <InArgument x:TypeArguments="x:Int32" x:Key="in_int_RetryCount">[CInt(in_dict_Config("OP_CANAL_005_RetryCount"))]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_TicketsOuverts">[int_TicketsOuverts]</OutArgument>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_Succes">[bool_SuccesAnomalies]</OutArgument>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_Anomalies">[CType(in_dict_Config("AnomaliesDataTable"), DataTable)]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_str_ExtractionId">[in_dict_Config("ExtractionIdCourant").ToString]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_str_SyncSecretMachine">[in_dict_Config("SyncSecretMachine").ToString]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_str_MiddleOfficeApiBaseUrl">[in_dict_Config("MiddleOfficeApiBaseUrl").ToString]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <Assign sap2010:Annotation.AnnotationText="Récupérer dt_Releves depuis le dict config" sap:VirtualizedContainerService.HintSize="550,206" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sd:DataTable">[dt_Releves]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sd:DataTable">[CType(in_dict_Config("RelevesDataTable"), DataTable)]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <Assign sap2010:Annotation.AnnotationText="Totaliser les lignes importées" sap:VirtualizedContainerService.HintSize="550,206" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[in_dict_Config("TotalImportees")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">[dt_Releves.AsEnumerable().Sum(Function(r) If(r.IsNull("NombreImportees"), 0, r.Field(Of Integer)("NombreImportees")))]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <Assign sap2010:Annotation.AnnotationText="Totaliser les lignes dédupliquees" sap:VirtualizedContainerService.HintSize="550,206" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[in_dict_Config("TotalDoublons")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">[dt_Releves.AsEnumerable().Sum(Function(r) If(r.IsNull("NombreDoublons"), 0, r.Field(Of Integer)("NombreDoublons")))]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <Assign sap2010:Annotation.AnnotationText="Totaliser les lignes nées hors canal" sap:VirtualizedContainerService.HintSize="550,206" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[in_dict_Config("TotalHorsCanal")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">[dt_Releves.AsEnumerable().Sum(Function(r) If(r.IsNull("NombreHorsCanal"), 0, r.Field(Of Integer)("NombreHorsCanal")))]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <Assign DisplayName="Assign-Construire le CSV des relevés (pièce jointe)" sap:VirtualizedContainerService.HintSize="550,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[str_CsvReleves]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[String.Join(";", dt_Releves.Columns.Cast(Of DataColumn)().Select(Function(c) c.ColumnName)) &amp; vbCrLf &amp; String.Join(vbCrLf, dt_Releves.AsEnumerable().Select(Function(r) String.Join(";", r.ItemArray)))]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[in_dict_Config(&quot;OutputDataFolderPath&quot;).ToString &amp; &quot;\releves-&quot; &amp; in_dict_Config(&quot;ExtractionIdCourant&quot;).ToString &amp; &quot;.csv&quot;]" sap:VirtualizedContainerService.HintSize="550,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_CsvReleves]" />
+      <If Condition="[in_dict_Config(&quot;ExtractionIdCourant&quot;).ToString &lt;&gt; &quot;&quot;]" DisplayName="If  ExtractionIdCourant renseigné ? → tenter de prendre en charge le compte rendu" sap:VirtualizedContainerService.HintSize="550,6050" sap2010:WorkflowViewState.IdRef="If_5">
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="548,5830" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Try Catch déposer l'item anti-doublon NOTIF-007" sap:VirtualizedContainerService.HintSize="514,1577" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <Sequence DisplayName="Essayer" sap:VirtualizedContainerService.HintSize="486,433" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:AddQueueItem TimeoutMS="{x:Null}" DisplayName="Add Queue Item-Déposer l'item anti-doublon (Reference = ExtractionIdCourant)" FolderPath="[in_dict_Config(&quot;NotifCompteRenduQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_dict_Config(&quot;NotifCompteRenduQueueName&quot;).ToString]" Reference="[in_dict_Config(&quot;ExtractionIdCourant&quot;).ToString]">
+                    <ui:AddQueueItem.ItemInformation>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                    </ui:AddQueueItem.ItemInformation>
+                  </ui:AddQueueItem>
+                  <Assign sap2010:Annotation.AnnotationText="Cette instance enverra le compte rendu (True)" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[bool_DoitEnvoyerCompteRendu]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Catch - Exception  dépôt refusé → doublon ou vraie erreur ?" sap:VirtualizedContainerService.HintSize="486,919" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[exception.Message.Contains(&quot;1016&quot;) OrElse exception.Message.ToUpper().Contains(&quot;DUPLICATE&quot;) OrElse exception.Message.ToUpper().Contains(&quot;DOUBLE&quot;)]" DisplayName="If Erreur 1016 / doublon (compte rendu déjà pris en charge) ?" sap:VirtualizedContainerService.HintSize="452,859" sap2010:WorkflowViewState.IdRef="If_3">
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,446" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap2010:Annotation.AnnotationText="Une autre instance enverra le compte rendu (False)" sap:VirtualizedContainerService.HintSize="416,220" sap2010:WorkflowViewState.IdRef="Assign_8">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[bool_DoitEnvoyerCompteRendu]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">[False]</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;OP-CANAL : dépôt anti-doublon refusé (compte rendu déjà pris en charge par une autre instance) : &quot; &amp; exception.Message]" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,283" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;OP-CANAL : échec technique du dépôt anti-doublon NOTIF-007 (pas un doublon) : &quot; &amp; exception.Message]" />
+                            <Rethrow sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <Sequence DisplayName="Enfin" sap:VirtualizedContainerService.HintSize="486,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </TryCatch.Finally>
+            </TryCatch>
+            <Assign sap2010:Annotation.AnnotationText="Mémoriser DoitEnvoyerCompteRendu dans le dict config" sap:VirtualizedContainerService.HintSize="514,220" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[in_dict_Config("DoitEnvoyerCompteRendu")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[bool_DoitEnvoyerCompteRendu]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <ui:LogMessage DisplayName="Log Message Résultat de la déclaration des anomalies" sap:VirtualizedContainerService.HintSize="514,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;OP-CANAL-005 : succes=&quot; &amp; bool_SuccesAnomalies.ToString &amp; &quot;, tickets ouverts=&quot; &amp; int_TicketsOuverts.ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <If Condition="[bool_DoitEnvoyerCompteRendu = True]" DisplayName="If Doit-on envoyer le compte rendu ?" sap:VirtualizedContainerService.HintSize="514,3470" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="512,3241" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_dict_Config(&quot;MiddleOfficeAgentCredential_CredName&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="[in_dict_Config(&quot;MiddleOfficeAgentCredential_OrchFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="478,176" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[secstr_moPassword]" Username="[str_moMatricule]" />
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-MO-001-Connexion au middle-office - Invoke Workflow File (Operations\OP-MO-001-Connexion au middle-office.xaml)" sap:VirtualizedContainerService.HintSize="478,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Operations\OP-MO-001-Connexion au middle-office.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_loginUrl">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_matricule">[str_moMatricule]</InArgument>
+                      <InArgument x:TypeArguments="ss:SecureString" x:Key="in_str_mopassword">[secstr_moPassword]</InArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_dict_Config]</InArgument>
+                      <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_SessionOpen">[bool_MoSessionOpen]</OutArgument>
+                      <OutArgument x:TypeArguments="ui:UiElement" x:Key="out_ui_moBrowser">[ui_MoBrowser]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_str_echecRaison">[str_MoEchecRaison]</OutArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <Assign sap2010:Annotation.AnnotationText="Mémoriser le navigateur middle-office dans le dict config" sap:VirtualizedContainerService.HintSize="478,220" sap2010:WorkflowViewState.IdRef="Assign_13">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[in_dict_Config("MiddleOfficeBrowserInstance")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[ui_MoBrowser]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-MO-004 - Lire le cockpit d'une extraction - Invoke Workflow File (Operations\OP-MO-004 - Lire le cockpit d'une extraction.xaml)" sap:VirtualizedContainerService.HintSize="478,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Operations\OP-MO-004 - Lire le cockpit d'une extraction.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ui_moBrowser">[CType(in_dict_Config("MiddleOfficeBrowserInstance"), UiPath.Core.UiElement)]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_str_LienCockpit">[str_LienCockpit]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_str_EtatEnsemble">[str_EtatEnsemble]</OutArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_dict_Config]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_ExtractionId">[in_dict_Config("ExtractionIdCourant").ToString]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <Assign DisplayName="Mémoriser EtatEnsemble " sap:VirtualizedContainerService.HintSize="478,175" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[in_dict_Config("EtatEnsemble")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[str_EtatEnsemble]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Mémoriser LienCockpit" sap:VirtualizedContainerService.HintSize="478,175" sap2010:WorkflowViewState.IdRef="Assign_11">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[in_dict_Config("LienCockpit")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[str_LienCockpit]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign-Calculer le chemin local du CSV résultats Passe 1" sap:VirtualizedContainerService.HintSize="478,175" sap2010:WorkflowViewState.IdRef="Assign_12">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[str_ResultatsExtLocalPath]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[in_dict_Config("OutputDataFolderPath").ToString &amp; "\resultats-" &amp; in_dict_Config("ExtractionIdCourant").ToString &amp; ".csv"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ucas:DownloadStorageFile TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Télécharger le CSV résultats Passe 1 depuis le Storage Bucket" Destination="[str_ResultatsExtLocalPath]" DisplayName="Download Storage File" FolderPath="[in_dict_Config(&quot;ResultatsExtBucketFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="478,273" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="[&quot;resultats-&quot; &amp; in_dict_Config(&quot;ExtractionIdCourant&quot;).ToString &amp; &quot;.csv&quot;]" StorageBucketName="[in_dict_Config(&quot;ResultatsExtBucketName&quot;).ToString]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ucas:DownloadStorageFile>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="dtResultatsPasse1 = New System.Data.DataTable(&quot;ResultatsPasse1&quot;)&#xA;dtResultatsPasse1.Columns.Add(&quot;RefPsp&quot;, GetType(String))&#xA;dtResultatsPasse1.Columns.Add(&quot;CbsAccountId&quot;, GetType(String))&#xA;dtResultatsPasse1.Columns.Add(&quot;Amount&quot;, GetType(Integer))&#xA;dtResultatsPasse1.Columns.Add(&quot;Issue&quot;, GetType(String))&#xA;dtResultatsPasse1.Columns.Add(&quot;Motif&quot;, GetType(String))&#xA;dtResultatsPasse1.Columns.Add(&quot;Ts&quot;, GetType(String))&#xA;&#xA;dtAnomaliesPasse1 = New System.Data.DataTable(&quot;AnomaliesPasse1&quot;)&#xA;dtAnomaliesPasse1.Columns.Add(&quot;RefPsp&quot;, GetType(String))&#xA;dtAnomaliesPasse1.Columns.Add(&quot;Issue&quot;, GetType(String))&#xA;dtAnomaliesPasse1.Columns.Add(&quot;Motif&quot;, GetType(String))&#xA;&#xA;intComptabilisees = 0&#xA;intRejetees = 0&#xA;intSautees = 0&#xA;intEnErreur = 0&#xA;intIssueInconnue = 0&#xA;&#xA;Dim lignes As String() = System.IO.File.ReadAllLines(strResultatsExtLocalPath)&#xA;For i As Integer = 1 To lignes.Length - 1&#xA;    Dim ligneBrute As String = lignes(i).Trim()&#xA;    If String.IsNullOrEmpty(ligneBrute) Then Continue For&#xA;    Dim champs As String() = ligneBrute.Split(&quot;;&quot;c)&#xA;    If champs.Length &lt; 6 Then&#xA;        intIssueInconnue += 1&#xA;        Continue For&#xA;    End If&#xA;    Dim ligne As System.Data.DataRow = dtResultatsPasse1.NewRow()&#xA;    ligne(&quot;RefPsp&quot;) = champs(0)&#xA;    ligne(&quot;CbsAccountId&quot;) = champs(1)&#xA;    ligne(&quot;Amount&quot;) = CInt(champs(2))&#xA;    ligne(&quot;Issue&quot;) = champs(3)&#xA;    ligne(&quot;Motif&quot;) = champs(4)&#xA;    ligne(&quot;Ts&quot;) = champs(5)&#xA;    dtResultatsPasse1.Rows.Add(ligne)&#xA;&#xA;    Select Case champs(3).Trim().ToUpper()&#xA;        Case &quot;COMPTABILISEE&quot;&#xA;            intComptabilisees += 1&#xA;        Case &quot;REJETEE&quot;&#xA;            intRejetees += 1&#xA;        Case &quot;SAUTEE&quot;&#xA;            intSautees += 1&#xA;            Dim ligneAno As System.Data.DataRow = dtAnomaliesPasse1.NewRow()&#xA;            ligneAno(&quot;RefPsp&quot;) = champs(0)&#xA;            ligneAno(&quot;Issue&quot;) = champs(3)&#xA;            ligneAno(&quot;Motif&quot;) = champs(4)&#xA;            dtAnomaliesPasse1.Rows.Add(ligneAno)&#xA;        Case &quot;ERREUR&quot;&#xA;            intEnErreur += 1&#xA;            Dim ligneAno2 As System.Data.DataRow = dtAnomaliesPasse1.NewRow()&#xA;            ligneAno2(&quot;RefPsp&quot;) = champs(0)&#xA;            ligneAno2(&quot;Issue&quot;) = champs(3)&#xA;            ligneAno2(&quot;Motif&quot;) = champs(4)&#xA;            dtAnomaliesPasse1.Rows.Add(ligneAno2)&#xA;        Case Else&#xA;            intIssueInconnue += 1&#xA;    End Select&#xA;Next&#xA;&#xA;intTraitees = dtResultatsPasse1.Rows.Count" DisplayName="Invoke Code-Lire le CSV résultats Passe 1 et compter par issue" sap:VirtualizedContainerService.HintSize="478,287" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="strResultatsExtLocalPath">[str_ResultatsExtLocalPath]</InArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtResultatsPasse1">[dt_ResultatsPasse1]</OutArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtAnomaliesPasse1">[dt_AnomaliesPasse1]</OutArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="intTraitees">[int_Traitees]</OutArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="intComptabilisees">[int_Comptabilisees]</OutArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="intRejetees">[int_Rejetees]</OutArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="intSautees">[int_Sautees]</OutArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="intEnErreur">[int_EnErreur]</OutArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="intIssueInconnue">[int_IssueInconnue]</OutArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                  <If Condition="[int_IssueInconnue &gt; 0]" DisplayName="If Lignes de résultats malformées ? → Warn" sap:VirtualizedContainerService.HintSize="478,455" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;OP-CANAL / compte rendu : &quot; &amp; int_IssueInconnue.ToString &amp; &quot; ligne(s) de resultats-EXT avec une issue non reconnue ou un format de ligne invalide - verifier l'orthographe SAUTEE/ERREUR/COMPTABILISEE avec la passe 1&quot;]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="dtAnomaliesCompteRendu = New System.Data.DataTable(&quot;AnomaliesCompteRendu&quot;)&#xA;dtAnomaliesCompteRendu.Columns.Add(&quot;Libelle&quot;, GetType(String))&#xA;dtAnomaliesCompteRendu.Columns.Add(&quot;RefPsp&quot;, GetType(String))&#xA;dtAnomaliesCompteRendu.Columns.Add(&quot;Motif&quot;, GetType(String))&#xA;dtAnomaliesCompteRendu.Columns.Add(&quot;Ticket&quot;, GetType(String))&#xA;&#xA;For Each row As System.Data.DataRow In dtAnomaliesPasse1.Rows&#xA;    Dim ligne As System.Data.DataRow = dtAnomaliesCompteRendu.NewRow()&#xA;    ligne(&quot;Libelle&quot;) = If(row(&quot;Issue&quot;).ToString().Trim().ToUpper() = &quot;SAUTEE&quot;, &quot;Écriture sautée&quot;, &quot;Écriture en erreur&quot;)&#xA;    ligne(&quot;RefPsp&quot;) = row(&quot;RefPsp&quot;).ToString()&#xA;    ligne(&quot;Motif&quot;) = row(&quot;Motif&quot;).ToString()&#xA;    ligne(&quot;Ticket&quot;) = &quot;&quot;&#xA;    dtAnomaliesCompteRendu.Rows.Add(ligne)&#xA;Next&#xA;&#xA;For Each row As System.Data.DataRow In dtAnomaliesPasse2.Rows&#xA;    Dim refPsp As String = row(&quot;RefPsp&quot;).ToString()&#xA;    Dim cle As String = extractionId &amp; &quot;:statement-unbalanced:&quot; &amp; refPsp&#xA;    Dim ticket As String = &quot;&quot;&#xA;    Select Case regimeApplique&#xA;        Case &quot;item&quot;&#xA;            Dim trouve = dtTickets.AsEnumerable().Where(Function(t) t(&quot;AnomalyKey&quot;).ToString() = cle).ToList()&#xA;            If trouve.Count &gt; 0 Then ticket = trouve(0)(&quot;JiraKey&quot;).ToString()&#xA;        Case &quot;run&quot;&#xA;            If dtTickets.Rows.Count &gt; 0 Then ticket = dtTickets.Rows(0)(&quot;JiraKey&quot;).ToString()&#xA;    End Select&#xA;    Dim ligne2 As System.Data.DataRow = dtAnomaliesCompteRendu.NewRow()&#xA;    ligne2(&quot;Libelle&quot;) = &quot;Relevé déséquilibré&quot;&#xA;    ligne2(&quot;RefPsp&quot;) = refPsp&#xA;    ligne2(&quot;Motif&quot;) = row(&quot;Motif&quot;).ToString()&#xA;    ligne2(&quot;Ticket&quot;) = ticket&#xA;    dtAnomaliesCompteRendu.Rows.Add(ligne2)&#xA;Next&#xA;&#xA;strAnomaliesHtml = &quot;&quot;&#xA;For Each row As System.Data.DataRow In dtAnomaliesCompteRendu.Rows&#xA;    Dim texteTicket As String = If(String.IsNullOrEmpty(row(&quot;Ticket&quot;).ToString()), &quot;aucun ticket&quot;, &quot;ticket &quot; &amp; row(&quot;Ticket&quot;).ToString())&#xA;    strAnomaliesHtml &amp;= &quot;&lt;li&gt;&quot; &amp; row(&quot;Libelle&quot;).ToString() &amp; &quot; · &quot; &amp; row(&quot;RefPsp&quot;).ToString() &amp; &quot; · &quot; &amp; row(&quot;Motif&quot;).ToString() &amp; &quot; · &quot; &amp; texteTicket &amp; &quot;&lt;/li&gt;&quot;&#xA;Next" DisplayName="Invoke Code-Fusionner anomalies Passe 1 + Passe 2 et rattacher les tickets Jira" sap:VirtualizedContainerService.HintSize="478,287" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="dtAnomaliesPasse1">[dt_AnomaliesPasse1]</InArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="dtAnomaliesPasse2">[CType(in_dict_Config("AnomaliesDataTable"), DataTable)]</InArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="dtTickets">[dt_Tickets]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="extractionId">[in_dict_Config("ExtractionIdCourant").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="regimeApplique">[str_ReglageApplique]</InArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtAnomaliesCompteRendu">[dt_AnomaliesCompteRendu]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="strAnomaliesHtml">[str_AnomaliesHtml]</OutArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                  <ui:MultipleAssign DisplayName="Préparer la liste des pièces jointes du mail" sap:VirtualizedContainerService.HintSize="478,149" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="scg:List(x:String)">[listStr_EmailAttachments]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="scg:List(x:String)">[New List(Of String) From {in_dict_Config("OutputDataFolderPath").ToString &amp; "\releves-" &amp; in_dict_Config("ExtractionIdCourant").ToString &amp; ".csv", str_ResultatsExtLocalPath}]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dateCloture As String = Now.ToString(&quot;dd/MM/yyyy&quot;) &amp; &quot; à &quot; &amp; Now.ToString(&quot;HH:mm&quot;)&#xA;Dim ligneCompteurs As String = &quot;Traitées &quot; &amp; intTraitees.ToString &amp; &quot; · comptabilisées &quot; &amp; intComptabilisees.ToString &amp; &quot; · rejetées &quot; &amp; intRejetees.ToString &amp; &quot; · sautées &quot; &amp; intSautees.ToString &amp; &quot; · en erreur &quot; &amp; intEnErreur.ToString &amp; &quot; · importées &quot; &amp; CInt(totalImportees).ToString &amp; &quot; · dédupliquées &quot; &amp; CInt(totalDoublons).ToString &amp; &quot; · nées hors canal &quot; &amp; CInt(totalHorsCanal).ToString &amp; &quot;.&quot;&#xA;Dim piedDePage As String = &quot;&lt;p&gt;Compte rendu : &lt;a href=&quot; &amp; Chr(34) &amp; lienCockpit &amp; Chr(34) &amp; &quot;&gt;lien cockpit&lt;/a&gt; · 2 pièces jointes.&lt;/p&gt;&quot;&#xA;&#xA;Select Case etatEnsemble&#xA;    Case &quot;conforme&quot;&#xA;        strEmailSubject = &quot;[SenyoneBank] Synchronisation &quot; &amp; extractionId &amp; &quot; : conforme, &quot; &amp; intTraitees.ToString &amp; &quot; écritures, 0 anomalie&quot;&#xA;        strEmailBody = &quot;&lt;p&gt;Synchronisation &quot; &amp; extractionId &amp; &quot; (périmètre : global) close le &quot; &amp; dateCloture &amp; &quot;. État : CONFORME.&lt;/p&gt;&lt;p&gt;&quot; &amp; ligneCompteurs &amp; &quot;&lt;/p&gt;&lt;p&gt;Rejets éventuels : résultats métier normaux ; les clients concernés sont notifiés avec leur motif. Aucune action attendue.&lt;/p&gt;&quot; &amp; piedDePage&#xA;    Case &quot;anomalie&quot;&#xA;        Dim nbAnomalies As Integer = dtAnomaliesCompteRendu.Rows.Count&#xA;        strEmailSubject = &quot;[SenyoneBank] Synchronisation &quot; &amp; extractionId &amp; &quot; : &quot; &amp; nbAnomalies.ToString &amp; &quot; anomalie(s) à examiner&quot;&#xA;        strEmailBody = &quot;&lt;p&gt;Synchronisation &quot; &amp; extractionId &amp; &quot; (périmètre : global) close le &quot; &amp; dateCloture &amp; &quot;. État : ANOMALIE.&lt;/p&gt;&lt;p&gt;&quot; &amp; ligneCompteurs &amp; &quot;&lt;/p&gt;&lt;p&gt;Anomalies déclarées :&lt;/p&gt;&lt;ol&gt;&quot; &amp; anomaliesHtml &amp; &quot;&lt;/ol&gt;&lt;p&gt;Action attendue : voir le détail par anomalie ci-dessus.&lt;/p&gt;&quot; &amp; piedDePage&#xA;    Case Else&#xA;        Dim exceptionsHtml As String = &quot;&quot;&#xA;        For Each row As System.Data.DataRow In dtExceptionsTechniques.Rows&#xA;            Dim codeSys As String = If(String.IsNullOrEmpty(row(&quot;Code&quot;).ToString()), &quot;SYS-000&quot;, row(&quot;Code&quot;).ToString())&#xA;            exceptionsHtml &amp;= &quot;&lt;li&gt;&quot; &amp; codeSys &amp; &quot; · compte &quot; &amp; row(&quot;CbsAccountId&quot;).ToString() &amp; &quot; : &quot; &amp; row(&quot;Message&quot;).ToString() &amp; &quot;&lt;/li&gt;&quot;&#xA;        Next&#xA;        Dim exceptionsSection As String&#xA;        If dtExceptionsTechniques.Rows.Count &gt; 0 Then&#xA;            exceptionsSection = &quot;&lt;p&gt;Exceptions :&lt;/p&gt;&lt;ol&gt;&quot; &amp; exceptionsHtml &amp; &quot;&lt;/ol&gt;&quot;&#xA;        Else&#xA;            exceptionsSection = &quot;&lt;p&gt;&lt;i&gt;Aucune exception technique détaillée n'a été journalisée pour cette exécution.&lt;/i&gt;&lt;/p&gt;&quot;&#xA;        End If&#xA;        strEmailSubject = &quot;[SenyoneBank] Synchronisation &quot; &amp; extractionId &amp; &quot; : incident technique, intervention requise&quot;&#xA;        strEmailBody = &quot;&lt;p&gt;Synchronisation &quot; &amp; extractionId &amp; &quot; (périmètre : global) close le &quot; &amp; dateCloture &amp; &quot;. État : INCIDENT.&lt;/p&gt;&lt;p&gt;&quot; &amp; ligneCompteurs &amp; &quot;&lt;/p&gt;&quot; &amp; exceptionsSection &amp; &quot;&lt;p&gt;Action attendue : diagnostic support RPA, puis relance d'une synchronisation.&lt;/p&gt;&quot; &amp; piedDePage&#xA;End Select" DisplayName="Invoke Code-Rédiger objet et corps du mail de compte rendu selon l'état global" sap:VirtualizedContainerService.HintSize="478,287" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="extractionId">[in_dict_Config("ExtractionIdCourant").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="etatEnsemble">[str_EtatEnsemble]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="intTraitees">[int_Traitees]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="intComptabilisees">[int_Comptabilisees]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="intRejetees">[int_Rejetees]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="intSautees">[int_Sautees]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="intEnErreur">[int_EnErreur]</InArgument>
+                      <InArgument x:TypeArguments="x:Object" x:Key="totalImportees">[in_dict_Config("TotalImportees")]</InArgument>
+                      <InArgument x:TypeArguments="x:Object" x:Key="totalDoublons">[in_dict_Config("TotalDoublons")]</InArgument>
+                      <InArgument x:TypeArguments="x:Object" x:Key="totalHorsCanal">[in_dict_Config("TotalHorsCanal")]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="LienCockpit">[str_LienCockpit]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="AnomaliesHtml">[str_AnomaliesHtml]</InArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="dtAnomaliesCompteRendu">[dt_AnomaliesCompteRendu]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="strEmailSubject">[str_EmailSubject]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="strEmailBody">[str_EmailBody]</OutArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="dtExceptionsTechniques">[CType(in_dict_Config("ExceptionsTechniquesDataTable"), DataTable)]</InArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SendHTMLEmail - Invoke Workflow File (AcceleratedFramework\SendHTMLEmail.xaml)" sap:VirtualizedContainerService.HintSize="478,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="AcceleratedFramework\SendHTMLEmail.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_Config">[in_dict_Config]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_EmailBody">[str_EmailBody]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_EmailSubject">[str_EmailSubject]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_EmailTo">[in_dict_Config("CompteRenduMail_To").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_EmailCC">[in_dict_Config("CompteRenduMail_Cc").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_str_EmailBCC">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_listStr_EmailAttachments">[listStr_EmailAttachments]</InArgument>
+                      <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_UseTemplate">True</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="512,90" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <If Condition="[in_dict_Config.ContainsKey(&quot;MiddleOfficeBrowserInstance&quot;)]" DisplayName="If Navigateur middle-office ouvert ? → se déconnecter" sap:VirtualizedContainerService.HintSize="514,328" sap2010:WorkflowViewState.IdRef="If_6">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-MO-005 - Deconnexion du middle office - Invoke Workflow File (Operations\OP-MO-005 - Deconnexion du middle office.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Operations\OP-MO-005 - Deconnexion du middle office.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="ui:UiElement" x:Key="io_ui_browser_MO">[CType(in_dict_Config("MiddleOfficeBrowserInstance"), UiPath.Core.UiElement)]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="548,90" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
     </Sequence>
-    <If sap2010:Annotation.AnnotationText="If any application does not close properly, an error will be thrown." Condition="[bool_CloseSuccessful = False]" DisplayName="If | Closing Successful?" sap:VirtualizedContainerService.HintSize="450,361" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="If any application does not close properly, an error will be thrown." Condition="[bool_CloseSuccessful = False]" DisplayName="If | Closing Successful?" sap:VirtualizedContainerService.HintSize="584,364" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -132,10 +641,10 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Throw DisplayName="Throw | SE" Exception="[new System.Exception(&quot;Some application failed to close normally.&quot;)]" sap:VirtualizedContainerService.HintSize="416,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        <Throw DisplayName="Throw | SE" Exception="[new System.Exception(&quot;Some application failed to close normally.&quot;)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

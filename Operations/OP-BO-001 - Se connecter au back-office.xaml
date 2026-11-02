@@ -1,0 +1,548 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="OP_BO_001___Se_connecter_au_back_office" this:OP_BO_001___Se_connecter_au_back_office.in_int_RetryIntervalSeconds="30" this:OP_BO_001___Se_connecter_au_back_office.in_int_RetryCount="3" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_bool_SessionOuverte" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="in_int_RetryIntervalSeconds" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_int_RetryCount" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_sec_OperatorPassword" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="in_str_OperatorLogin" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_BackOfficeUrl" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>OP_BO_001___Se_connecter_au_back_office_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="OP_BO_001___Se_connecter_au_back_office" sap:VirtualizedContainerService.HintSize="1065,3787" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="bool_LoginPageReady" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_LoginError" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_HomeReached" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="int_TentativeCourante" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="558,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;OP-BO-001 : tentative de connexion au back-office (&quot; &amp; in_str_OperatorLogin &amp; &quot;)&quot;]" />
+    <Assign sap:VirtualizedContainerService.HintSize="558,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[int_TentativeCourante]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[Not (bool_HomeReached OrElse bool_LoginError) AndAlso int_TentativeCourante &lt; in_int_RetryCount]" DisplayName="While" sap:VirtualizedContainerService.HintSize="558,1996" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+      <ui:InterruptibleWhile.Body>
+        <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="522,1865" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="488,211" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[int_TentativeCourante]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[int_TentativeCourante + 1]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[bool_HomeReached]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[bool_LoginError]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MultipleAssign>
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Senyone Bank" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,1594" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" IsDisplayNameAuto="True" ScopeGuid="e187bc1c-6489-449e-b3a6-c7dc52195848" Version="V2">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="486,1399" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UiElementExists DisplayName="Element Exists 'FORM'" Exists="[bool_LoginPageReady]" sap:VirtualizedContainerService.HintSize="452,139" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a49d98ab-232e-4493-a141-ee735aa77046" InformativeScreenshot="7302c33ef021bf07c9cb3cd9ec77c025" Selector="&lt;webctrl id='amp-login-input-user' tag='INPUT' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:UiElementExists.Target>
+                  </ui:UiElementExists>
+                  <If Condition="[bool_LoginPageReady = True]" sap:VirtualizedContainerService.HintSize="452,1095" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,866" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Code utilisateur'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="e187bc1c-6489-449e-b3a6-c7dc52195848" Text="[in_str_OperatorLogin]" Version="V5">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/pispi/login" CVScreenId="aeaf957f-7a44-4e03-963b-dc7af3e3cefa" CvElementArea="680, 525, 563, 35" CvType="InputBox" DesignTimeRectangle="678, 682, 564, 33" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl tag='INPUT' placeholder='OPS001' aaname='Code utilisateur' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' name='user' /&gt;" Guid="37bbbbb1-9fc3-4faf-9415-4df2b1aaa3d5" InformativeScreenshot="193b115766f7e1ae57c45eebcd62e44e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Senyone Bank' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Complete">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                  <uix:Target CVScreenId="aeaf957f-7a44-4e03-963b-dc7af3e3cefa" CvTextArea="675, 501, 177, 18" CvTextArgument="CODE UTILISATEUR" CvType="Text" DesignTimeRectangle="678, 659, 564, 20" ElementType="Text" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl tag='LABEL' class='wf-label' matching:class='fuzzy' fuzzylevel:class='0.0' aaname='Code utilisateur' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='Code utilisateur' visibleinnertext='CODE UTILISATEUR' check:innerText='CODE UTILISATEUR' /&gt;" Guid="a63f0095-f17b-4e84-b725-6e2d422b1a19" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAjgAAAAYCAYAAAD3RofpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAO5SURBVHhe7d09ahtBGMZx3UQYQs6hQhhS5RpWmy6pXBmdwqgx6gPpRS7gG8RHmbDSfsy8XzMygXhX/8CviHbn3Zkdwfuwayer1P95e3tLr6+v6XQ6AQAAzMrhcEiPj49ps9mcrQg4AABg7gg4AABgcQg4AABgcQg4AABgcQg4AABgcQg4AABgcQg4AABgcZoCzv5+lVYraZ12L7rg6WWX1urcVdo+6XPtur27XTrK2rUxnfu9GjM5pt3dcK6e//FhPdZZPxyLv4fOc92nrfx8MMwpvzfO+so5WtfJz/WuuU17VVfvTbdGb/2hfh7te5HPU88trzN+T562ul5Gzh0AgFwccH5+M8NKLg8u1YYnGnT1fKORVcfcSMCpz00HCTVGzEEd93yAgFPWBwCgFASc5/QlbyZFM5ya8NCQyuaYNzHRsLOmZDY2VcsPUdZTodh1AeeasaMoxETHlCAUiCcxxX0Yj8kgYQWnYB0N623fi2AtXp084ORBpgg+9rwAAHADzu/vn6ZG4jTjLhBcGlLewIymUzTk6bjZ2LLa1vWjMXVx055NwMmbvFmnm2swJqPXmdeI19u+F8FavDpewBFPyuLrAgBulRNw/qQfn1uaYK+p4ep6ZmMb2aEpfi1iN2J7Hvrc2QQc6+ecKq9rynud1XbnUV9v+14Ea1Fz6z9vCjj2vAAAcALOr/Q1a1Y6fJS8py25vIm1BZwyFA3H25uqJW7aswk45uumjKqta8X3Xl7DXm/7Xujre3VqAafluwYAwKwDjh5TEzft+QScizhgZGOssGB9Vqivt30v4rWYdZxXahNdBwCAgRNw5vGKSo+piZv23AKOe11xf+Ig5NWvr7d9L+K1mHXCgGPPBwCAgRNwbvOHjOPa8dhRFGKiY0oQCp62RgDrWEGy/KFcz3vWG9+vXLAW7zrqCZN8LSfrAAAwcQNO/GviU3MbGpv/a+Kiwf7XXxMXtfNXM0UIs5qn04ilKMREx5QgFIzNX3xuBcng6Zp7L87q671mL/Jzi3DmzU8FnO5z8V2q3kMAwK0KAs7H+If+ZOOsjlGNWpJPArT60xGr4QdPSoY5Ga+RSl1gCeY33L/w9c2F9RpQrSsMdbX1XrsXwf3pFXttBhw5Z/2dAgCgEwec8L9qkA2xJxuQ1bx6dt24cYVjOtWAcyGfEl04azqrNfyggf/rgBPW8p6eWXMur1XuUW2979sLc4y1117AkcfOon0DANyipoADAAAwJwQcAACwOAQcAACwOAQcAACwODLg/AUNiw+RWIUFzQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Mot de passe'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_2" IsPassword="True" ScopeIdentifier="e187bc1c-6489-449e-b3a6-c7dc52195848" SecureText="[in_sec_OperatorPassword]" Version="V5">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/pispi/login" CVScreenId="7563409a-02eb-4c63-b662-85801b7e62e3" CvElementArea="682, 598, 562, 35" CvType="InputBox" DesignTimeRectangle="678, 756, 564, 33" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='password' aaname='Mot de passe' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' name='pwd' /&gt;" Guid="80ec00c4-ee16-435a-8aec-34e68f794c0f" InformativeScreenshot="9edfde88a75a767d7e2d026c9217dff6.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Senyone Bank' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Complete">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                  <uix:Target CVScreenId="7563409a-02eb-4c63-b662-85801b7e62e3" CvTextArea="675, 576, 132, 18" CvTextArgument="MOT DE PASSE" CvType="Text" DesignTimeRectangle="678, 733, 564, 20" ElementType="Text" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl aaname='Mot de passe' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' tag='LABEL' class='wf-label' matching:class='fuzzy' fuzzylevel:class='0.0' innertext='Mot de passe' visibleinnertext='MOT DE PASSE' check:innerText='MOT DE PASSE' /&gt;" Guid="4e1f51f3-0fce-475d-a415-8ecf41b28fd7" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAjgAAAAYCAYAAAD3RofpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMaSURBVHhe7d1PbrMwEIdhboJykyxQztJcoausIo6RTZVrcIMcIUdxlRCCPTMGuw1Vcd5PejZlzB93MT8NVF/lHv+u16u7XC6u6zoAAIBVOZ1O7nA4uO12e1cRcAAAwNoRcAAAQHEIOAAAoDgEHAAAUBwCDgAAKA4BBwAAFIeAAwAAihMPON2n21SVqwa7Vi3ujs14vKpcc9QXkDW92u2/vJqvvatVjUWsC5zdfiPrPdb9z1536nrz6839MNbVH2dd83D+qNV5Y2uSas3fh69xrXEfAACsSXrAUc1eB4qwoevjyhA6ZoLCSN5D5vXkPc5ed+p6KevtYKWCyGbvzvLcXesaeS5hDC4ZtQQcAMAbyAg4olkbjdIPD+3OOxY08LAZz00irOM2P+CEwSS4F/+YH1DMkDEjtj7YGxmSrCAma6b2bzw27E1ObXBvRvgCAKAEeQHHa8RhaOg9A04w2TAmAkEA0MdfHXBugvu1JkevDDgixARTIyMY6uecWO+dp1+TU0vAAQC8h7SAs6mfjfzeKJ+NvXa10VyDVzBmEw2nOLIpLxFwzNA194rJvPfIOSemVLHJVnP06iKTl5HxTD+ojQWsQfp+AwDwfyUGnL1rn6Gjcc3QUHetaNj9Sc1pSWB66rBIwAlCx+P4QgEn/MbGn1D599D/3Nq/u5kgslRt+n4DAPB/JQecs/Eh661xWg16lQHnt6+oIqLhYtgX62eJ5w/2JrV26noAABQiI+DYH7NaAWeVr6heHnD0t0X6VZKk10yun7jnaC0BBwDwBrICjt/QrWnNM6hYYcJX/EfGFj0Bs/R7eHsWvS93au9yagk4AID3kBdwDGbAkYHCXy+mHlaAeXXACacZf/Bn4hY/WIhaPfEan0U+vw5qObUEHADAe1gs4MjvbEyRBvv7gBMjJjuTr5iMeikj4Pj7pJ5JTbxSnmWY2uTUyqmOJTINAgBgRRYMOA9mQ50ODosEHCtM/VnAMT5wDo7bH12r72gerD1JrjV/Hz4CDgBg/eIBh/9sEwAArBQBBwAAFIeAAwAAikPAAQAAxZEB5xtffjYNzpR/IgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Se connecter'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,266" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e187bc1c-6489-449e-b3a6-c7dc52195848" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/pispi/login" CVScreenId="af41e3bb-52d2-4293-af73-0fcfa69e0a2f" CvElementArea="677, 657, 565, 35" CvTextArea="900, 668, 117, 16" CvTextArgument="Se connecter" CvType="Button" DesignTimeRectangle="678, 816, 564, 36" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='BUTTON' aaname='Se connecter' innertext='Se connecter' type='submit' visibleinnertext='Se connecter' /&gt;" Guid="217b224a-dd78-4100-8ceb-23f484a44d23" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAjgAAAAoCAYAAADzPIBEAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAOQSURBVHhe7du9bSM5AIBRdSJsJw6E7eGwDay6cGQ4OrgDOVk4VAlyBw4dupQ56G9EckhKu96zROIReJE5I84k/EDJs+EwPj4+hre3t+H19RUAoCnPz8/D/f39cHd3tzMTOABA6wQOANCdYuAYhmEYhmG0PFarlcAxDMMwDKOfEcaNwDEMwzAMo/mRxk0xcLa/xwEAaEEaN9XAeX9/3/3oGADgFm02m2G9Xk/ipho42wvTXygDANyK9D+nBA4A0DyBAwB0R+AAAN0ROABAdwQOANAdgQMAdEfgAADdETjQnMdhMZsNs4nF8DiZy0UeFqf3+P1x+negOQIHGvLyc54JG5HzaQIHuiNwoBW/lsM8iJnFQ+5vAuePCBzojsCBVoSb8Lfl8JL+/fVlWH5LAie85rc38PxXYVFY5e6fri2Nh+ia+bD8dZobnlDNf74kJ1a5eNs+c7rG+J5Hj9/Tefv11E7FwmfNXV98F+Fzpu8D+BICB1qRnOCMG2k67yC3IY/ObLq1Tf94bfX+YWTkIihyCpfq526F6869j8AYH9V58+HHP+XP3N8jH3pH2xCrPueZdw38PwQONCN3WlHYSIPNdtyAk4CITh9CURAkpyHb+24/J5pTCJRjfKUnG7u5cTQc15Ke4JTXE76L8GQnuO/ufcTvLHwX+7mH+2XXuHcKufBdZD6/cg/g6wkcaEz95GS/2dbn7MWb/Uk2UipzptEQr6W08YdrrAZOFBOHyKieygSfXwixicIa0xDLOx9JwNcTONCyzEa/jYVLAqe0Cecj49I5txQ482H5bzCv9lVRYY2XBc5h/cV7ANcgcKAVD4tCcEy/hsnFw6XykXHpnCsETi1cLp1XWGP2eUqK9wCuQeBAK8YNNNloc79RiX7wmm7M+2Aohk/ufuEa/spvcD4ZOJmoi57huM7qvMJvcJIQik7D0nDZvYd6yAHXIXCgFVG05IUb+LmvqYqBk4ZK6hAA1Tml/6L6a4GThljGMVSq8zInQoFL/ovq3EkVcB0CB1pS2IinpzRn5te+rhnlNvbMiU46J713YeP/dOBk7hNKAy43LzrRyTxLeI9S0I33KDwncB0CBwDojsABALojcACA7ggcAKA7AgcA6I7AAQC680eBs9lsdhcCANyip6en3w+c9Xq9uwgA4JalcZMNnNVqNZkEANCSKHDEDQDQgzFwxA0A0IsxcNLvswAAWnMMnP8A1SOH7Q7DIGMAAAAASUVORK5CYII=" InformativeScreenshot="44ec2b440150de53a15110065c9d9579.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Senyone Bank' /&gt;" SearchSteps="Selector, Image, CV" Version="V6" WaitForReadyArgument="Complete" />
+                          </uix:NClick.Target>
+                          <uix:NClick.VerifyOptions>
+                            <uix:VerifyExecutionOptions Mode="Appears">
+                              <uix:VerifyExecutionOptions.Target>
+                                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/pispi/home" CVScreenId="8869b60b-768f-4be4-8c2f-7474c09a2f4d" CvTextArea="59, 416, 157, 28" CvTextArgument="OPERATIONS" CvType="Text" DesignTimeRectangle="62, 420, 558, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl tag='DIV' aaname='OPÉRATIONS' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='OPÉRATIONS' matching:innertext='fuzzy' fuzzylevel:innertext='0.0' visibleinnertext='OPÉRATIONS' matching:visibleinnertext='fuzzy' fuzzylevel:visibleinnertext='0.0' /&gt;" Guid="dde73bdb-ca77-41b5-994a-2be4fd78f4f1" ImageBase64="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" InformativeScreenshot="8464bbe635d53b2ddcb421d484ea0b08.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Senyone Bank' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V6" WaitForReadyArgument="Complete">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <uix:Target CVScreenId="8869b60b-768f-4be4-8c2f-7474c09a2f4d" CvTextArea="677, 422, 129, 22" CvTextArgument="RAPPORTS" CvType="Text" DesignTimeRectangle="680, 420, 559, 25" ElementType="Text" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl tag='DIV' aaname='RAPPORTS' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='RAPPORTS' visibleinnertext='RAPPORTS' check:innerText='RAPPORTS' /&gt;" Guid="bb5bcf28-5f14-4e6a-bdb7-54511d33d3e3" ImageBase64="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" SearchSteps="FuzzySelector, Image, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:VerifyExecutionOptions.Target>
+                              <uix:VerifyExecutionOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionOptions.Timeout>
+                            </uix:VerifyExecutionOptions>
+                          </uix:NClick.VerifyOptions>
+                        </uix:NClick>
+                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="450,190" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:UiElementExists DisplayName="Element Exists 'A  amp-home-tile-operat...'" Exists="[bool_HomeReached]" sap:VirtualizedContainerService.HintSize="416,130" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                                <ui:UiElementExists.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3e29cafc-5f22-4437-ad5a-0b7aa964e5c1" InformativeScreenshot="fa73e2919c5840f3e1281aac698c6474" Selector="&lt;webctrl id='amp-home-tile-operations' tag='A' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:UiElementExists.Target>
+                              </ui:UiElementExists>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CommentOut>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="486,470" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[bool_HomeReached = False]" sap:VirtualizedContainerService.HintSize="452,410" sap2010:WorkflowViewState.IdRef="If_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,190" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:UiElementExists DisplayName="Element Exists 'DIV  amp-login-error'" Exists="[bool_LoginError]" sap:VirtualizedContainerService.HintSize="416,130" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                                <ui:UiElementExists.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cb8029c3-5fbf-4500-affc-1bdc207fd55f" InformativeScreenshot="fdb0fa0ac5791a90b1e2c51d4ed5e97a" Selector="&lt;webctrl id='amp-login-error' tag='DIV' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:UiElementExists.Target>
+                              </ui:UiElementExists>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,48" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="486,454" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[Not (bool_HomeReached OrElse bool_LoginError) AndAlso int_TentativeCourante &lt; in_int_RetryCount]" sap:VirtualizedContainerService.HintSize="452,394" sap2010:WorkflowViewState.IdRef="If_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Delay Duration="[TimeSpan.FromSeconds(in_int_RetryIntervalSeconds)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.OCREngine>
+              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                <ActivityFunc.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                </ActivityFunc.Argument>
+              </ActivityFunc>
+            </uix:NApplicationCard.OCREngine>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-11, -11, 1942, 1030" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAABASSURBVGhDvdl5VFPnugZwrApCCAky2HvvucvTtW7PWq1MMiNxrsocwgyKOM+tKEiZQZBJZHYWx9bqac/R1mWtQ4GdOQRCAiSBhIAUUZx6aWtrT6uX5669EwajQNvT9l3r/Xfn+X15v2/vnZiY/A7lTNxPdCLuEU7EvUFH7lfPHLi34cDtgQNXBwduFxx4GjjyO+AoUMFR0D7oLFLoXMSyy64SKcv4Wn9auRGDia7EI50LcX/IhRiAE9EPR6IPjtxeQ/huzOF2YQ5PCwdeBxz4ajI8HAVtcBYp4CKWYa5ECnep+JlHE1/uLav/czDuxLeJbsTgoBvxv3AlHmEu8QAkwJnohxMF6DMCaDCHAqjgwNcDHAWteoC4mQTAo0kAn5Z6sBTXBxe2XU00/szfpbyIH1iexJMBD+I7uBODcCO+pgAj4bl9cOJ+BSdqfLqp0dEDOvXNV44BKOAsaqEAro0SeMsIeMtIwA0sar+CJcpLA8s7Lv5+34gX8UOtJ/FkiAzvQXwLd+IbDH8DLtx7cOGSAH14x+G552rhwNVgDpcEqKjWA1rhKJDDSdgCF7EUro0ieDTxKMCC1qsUYLn6Ivw7PxwK1J6pNc7yq8ubeCr3In6AJ/EE+tUnw+tX35X7gAI4GwCO3O4xADJ8B+bw1FT4t3lKzOG3w4FPAlrgJJQZABJ4NdfDR/Yl5iuukauPFR0XEdR1CkFdJxHac1RnnOkXlzfxo86LeIpRALn6g3AnAdyHcOXehwv3Lpy5d+DE7aEA+tHppMK/zSWDD7cSb/PaqHYQyCmEi7gR7lIBPJu4FIAlJwH/xDL1RQRqTyNEdxxht6sR1Vf+JK6/cLZxvgnLh/iXzof4EaMAcny+ocK7UeEfjADI0XGiVp9c+eG5Hw7ePqZfBDgJm+AqEcFDOgz4wgC4gADNMKAG0X0HENdf9NQ447jlQ/wkJ8N7jwC+fwXgPuZy78KF2rzDs6/Rjw6vw7DiZOjWkeCjrR+juWIJ3Bv58KQANzFfcRWL2v4J/84zCNKeAFt3GJG9ZYjpK0b83VysuZ82+TjNI36qnUf8BD2ADE/2E3gS38KDGp/HIwBXav574cTrgSNPf8Miz3z9ph0OP9zGABmchY1wk5CAOvjIboAlv4p3lBewQn3WADiEiNvliO0rQvzdHKx9kIaNj3ZdNs48UvOIn1nziJ+H5hH/ogA+xFN4E0/gRXwHT+IbPYBLAsjxIU+fO2MAOgowh9ysVOuDjtfUHhBJMFcsogDzZJ9Tq68HnKHCh98+gNi+fMT2FSD+XhbWP0jGpkfvDW39euurj1hf4tkAufovAr43AAbhcOUO/uecEm/UtuCNky1445QMb5yU4s2/K/DW9c4xgPYJAXP4rdT8u4hEcJPw4N18HSz5FSxs/QeWtF2Ef0ctgrUHwekuR2RvMWL79iLh3vvY+PBdbH28Edu/XtdnnJ0Mn+hL/IxRwFOq53zSj/8sagDzvQ9gtf0DWO28CObuj2G955K+kz6B9e4LsH7vHGx3ncV/19zCm5+2vBR6bDvwyU3cDBeRGG4SAl7Sm9Q3ML/lEt5pP4cV6tMI0hxBeHcJYr7Kw6o7aUi4m4RND7dTgK2P12P71wkv3rF9iWeDvsQzDCOcP30M6+RLsNz+EeiJl2CVfAWMlM/BTLsBZsZNWGfdwszsL2FD9S3YZN+AbeYXsEn7DDa7z8M+7Tze/Fz+Uvg5fAUcBC1wFDRhrogPD0kdvKXXML/lUyxSfIxl7afhrz6KYE0VOLr9iOzJR1xfBgXYcH8bNj3YgC0P12L716sGRsKziOeJLEN477of8ZdyGWjbPwZt12ewTPoc9PdvwCq9DowsLpi5AljniWC9T4yZ+8SwKZTAtlAMmwIRbPfxYZffALu9X8Iu8ypsd5/Hf5Vfw1vEi+NErr6jQEqNkIfkFgVYIPsEixUfUYAVyhMI1lQivLsQUT1ZWPVVMlbfScS6e9uw+cF6bHmwGtsercSOx5H6vcAinutYxHP41P2EmVkNsNh5BbSka7BMuQnLdAL0LCEYuRIw8pvBLGyBdbECM0vaMHN/G2xK22Bb2ga7AwrYlrbAbn8T7IrFsC/gwz6/Dnbpn+H1vEsjCGr+BY1wEQrhKqqHh+QGvKVXMV92EYvlZ7Gs9Rj8lIcRqC4HR7sPUd3piOtNQkL/e1jXvwEb7q7Flvtx2PYwBjseR+lPJBbxfIgMb5MrgPnuL2CefBMWqQ2wzBTCMkcKep4MVgVtYBS1g7FfBevSDsws68TMcg1sKsjuhG1FJ+wq1bCrUMGuvBX2B1pgXyKBfSEPdtlf4PWCKxTCgS+Dk0ACZ4EAc0UE3MU34S29jAUtH2GJ/ASWtx5CgKoCweoihHbmIKYnBStv78Tqvh0jgE33VmLzQDR2PAobMJlP/F/ifOI57ApbMCPpFsz31MEijQ+LLAlouTJY5reBXqiEVXEHGPs1YJRqwCzTwrq8CzMrujCzUgebKh1sq7pgV62DXbUWdtUa2FepYV/RilkHmjGrWAj73Bv4S/UtOPLFcBbwMVdYDzfhDXhJPoVX42UsaD6LJfLjWK6ohF9rGYJVBeB0ZiKyaw9iu99F/O2NWNO3Eev7V2PTvVgKsGWAM2SyqO4n+dsXHsIsuQEzUriYkSqEeZYUFrly0PLbYVmgBr2oE/QSDaz2a8Eo7QLjQBeY5TpYV3RjZiXZJKIbttXdsKvpxqwa7ff2NdqTsw5qd8+qbE+eVSY/Z18s+s4u5zr+dkkEFwEXrsLrcBNeg7fkE/g0fmwAHMVyRQX8FCUIUeWA05GCCE0KYnTvIU63CfE9a5HQG48N/THYfC8Cm++FwsT3+tMheo4MZikCmKWKMCOzCeY5CljktYO2Tw1aYScsizSgl3SBvr8LVhRAB0aZbgRhTSKqumFTrsXslKv3R04Ho7IvEX/4euEXcOHfgKvgKtyFl+Ep+jt8G89gQdMxLGmuxFJZOfwVeQhRZoOjTkZk57uI0W7CSt16xPckIKF3Jdb2RmFDfzg29ofAxPHiI5i+L4ZZaiNmZDRjRrYC5nvbYZ6vhkVBB2gFnaAVaWFZrJ0QwXi/HrYRFfXGoY3LvoB34a0rDXATXIGH8GN4iz4Eq/E0FjYdxpLmMixrKYafPA8Bikyw25MQpt6FyI7NiNWuwSpdDFb3RGHN7XCs6w3FhjshMJl9vB+mqVKYpjfDLFMBs5x2zNirhnl+B8wLNLAo1PcwwrJE+xLCasdnoL2T+71x2PHqbx9cG3Lj/wNewjPwEp4Gq/EYFkgPYVFTFZbL8uCvyEagYg9C2pMRrt6GcPVmxGhIQCziu2Ow5nYE1vWyseGrIJjYlHZhenoLTDPkMM1ug1mOGmZ71ZiR3wnzfZ16hAHyKgR9Tz1oy3JBC9z/kXHQ8crt/I0eD/45eArOwlt4GvPEx7CgsQJLpPlYKs2FX0sKAuWJCGndjtC2zQhrX4cYTTxWamMQr4tAQncY1t0OwvreAJgwijWYni7H9Mw2mGYrYZqjglluB8zyOkcR+8ZBZDSCtiwbtIBiWAZXpBoHHa+8Prl+3oN/Bl6CWvgID8NXWIaF4kIskeRgaWMGlklT4C/biSD5NoS2rgWnbQ0iVSsR0xGFlZowxGuDkaALxNpuv0GTaemtmJbZhumZ7ZierYJpjhqmJGDvKGLGqxAFaliE7ActsIQMD8vQg3uMg45X7tyTLE/eEXjzquAjqKEA84X5WCzOxNLGVCyTJsO/+V0EyTaCLU8Apy0BUapoxKg4iOvk6AFdgVij87tsMjVDiWmZ7ZiWpaQA03M6KMCkiK1XQPMrhGUIFR70sKNJxkHHK0/uwVovbqUewCuFr6CYAiwSpmKp5H2saNyOgKbNCJKtB1u+GhxFDMLbYhCtZCNWzcbKjkDEawKGVmvemW0yNaMdFCJLhWlZakzPVo+PoEZKjzAPKNKvPOcgLMOOgh5RyzUOOl55NFQPehHl8OaVwYdXAhZ/LxYIMrFIsAdLxUlYJtkBf+k6BMsSENwch1B5LMIUHIQr2IhqC0Ks0g+rOlYQ1MVey1A+m5qpxNRMNQWgejJEMh8W5Nyza2AZToY/AXrkqV/0zurRUFXk2VAFL6IMPtw8+HKzweLlYAE/DQv5u7FElIjlki3wa1yLwKZ4hDTHgd0ciTA5GxGtIRQgRhkw+lmvpasGX8tQYWom2S8jRiDDiLxOmCecB40cnbAjhvAnQY86RSJe/aZkKLe6itke9QeGPOuL4dVQAB8iB77cDLC4qVjIT6IAS4VbsFy8HstFCfCXxCFIGgF2czhCm9kIawlGhCLgaVTritFfKKakq4jX0lUYi5g6CcIipBy00IOwDD+mDx95ahgw4Uu3e13ZbM/6gmee9QXwbtgLn4ZM+BJpYHH3YCF/Jxbzt2Apnwy/BitEK+EvjkZwUwRCmjjgyNgIkwUPhLUEvPjzypQ0VeIUEvArEBZ+haANr36UYfWjTushkScn/G3Ts74g2qt+7zOfhgzMa0iFb8MesLjJWMjbhsX8TVjKX4t3BGuxQhgHf3Ekgho5YDexh0Kbg8d/mZ+Sphoai9BDjBF6iFmGAhYBJaANrz4Z/EXAM3rkyUl/hPKuTy+a15Ci823Y9XQ+8S4WcrdiMW8jlvDWYZlgFZYLY4dWCKMHAiWhtcFS9sTXm5Km1E1JU+FlhOolhGmyGBaBpaBFHDeMDgkwtB5A9lOriNqJP/R3rTRl9JQ0JcZFDG9uEpHZDosAEkCOzynQo18JgFVE7VOriBN/KmJQj1BOirDwL4JlZK0+9PgAWEWcGLIKP15k/FF/TKUqE02GAZMgzCOOwJIcockBsAo/TvagVdixCY/Yyco6sIxlHXhgwgOCRAyYpE6OmLHuEmicw5ON0FgArMKOwSrs6CCDc6SWwTnyi0eLGVRexAwq11kHlsE68ACsA0on+EZTlSyTVOXQZIhpyU2wCKmcaBOPBwCDc0TfoYcHGaGH5IzQgwSDfTCRwa5JZIZUJzJDqi4zg6sIZnDlIDOoYogZVA6yDYAh64DSSb7JVGURCTBGUJAxCHNONejhhjF68Rj9pQAwQg+BEXoQDDbZNWCGVIMZUgVmMNmVYAZVUOHHAH7hPzapSvlLiOETyoCYvpMLy5CqV93I/iiA3DjmxJWq1I2LMEDMo0+BTt3QRh4l/ijAhI8o49cYxOgJNYqYmtICGrkX9E+jfxTgN4YfrjHj9CrEtGQpaKHVo0+lvy/gV47NeKXf2NTp9EpEEomo0W9q8gb37wOGmMGVExyXv6X0Ryx1nxgPYRF1AnTqKdUQ/rcBBpjBVZMclf9OkXfsVOXgeHdts41XQOMcosLqwx/T9+SAQfI+YPxxf1ylKqNNqKdY5ZAxYmpaG8y218Ei/gKs2DWw4hzRdxgZ/jAYBiA99gwYwZXd5I3M+PJ/ak1JUyZOSVMSU8jX03TVM+NHD9OUZpjtkcA8kQvrXfXP/yOp7tu/pnwpML7Ob6n/BzYksoccqPiRAAAAAElFTkSuQmCC" InformativeScreenshot="ead3508af467811b39203b42c0f74127.jpg" Selector="&lt;html app='msedge.exe' title='Senyone Bank' /&gt;" Url="[in_str_BackOfficeUrl]" Version="V2" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+        </Sequence>
+      </ui:InterruptibleWhile.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InterruptibleWhile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="558,57" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="486,454" sap2010:WorkflowViewState.IdRef="Sequence_22">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[Not (bool_HomeReached OrElse bool_LoginError)]" sap:VirtualizedContainerService.HintSize="452,394" sap2010:WorkflowViewState.IdRef="If_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw Exception="[New Exception(&quot;SYS-002 : ni l'accueil ni l'erreur de connexion ne sont apparus après &quot; &amp; in_int_RetryCount &amp; &quot; tentatives&quot;)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="558,337" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[out_bool_SessionOuverte]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">[bool_HomeReached]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="558,1024" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="522,922" sap2010:WorkflowViewState.IdRef="Sequence_24">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[bool_HomeReached]" sap:VirtualizedContainerService.HintSize="488,862" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,226" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;OP-BO-001 : session ouverte avec succès&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,506" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[bool_LoginError]" sap:VirtualizedContainerService.HintSize="452,446" sap2010:WorkflowViewState.IdRef="If_6">
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;OP-BO-001 : identifiants refusés (amp-login-error)&quot;]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>

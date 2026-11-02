@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetBRE_EmailInfo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetBRE_EmailInfo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_dict_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="out_listStr_Attachments" Type="OutArgument(scg:List(x:String))" />
@@ -10,16 +10,7 @@
     <x:Property Name="out_str_EmailBCC" Type="OutArgument(x:String)" />
     <x:Property Name="in_exc_BREException" Type="InArgument(ui:BusinessRuleException)" />
     <x:Property Name="in_str_TransactionID" Type="InArgument(x:String)" />
-    <x:Property Name="in_str_CandidateName" Type="InArgument(x:String)" />
-    <x:Property Name="in_str_initPersonEmail" Type="InArgument(x:String)" />
-    <x:Property Name="in_str_Matricule" Type="InArgument(x:String)" />
   </x:Members>
-  <this:GetBRE_EmailInfo.in_str_initPersonEmail>
-    <InArgument x:TypeArguments="x:String" />
-  </this:GetBRE_EmailInfo.in_str_initPersonEmail>
-  <this:GetBRE_EmailInfo.in_str_Matricule>
-    <InArgument x:TypeArguments="x:String" />
-  </this:GetBRE_EmailInfo.in_str_Matricule>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -56,6 +47,7 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -109,16 +101,24 @@
       <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetBRE_EmailInfo" sap:VirtualizedContainerService.HintSize="626,1999" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetBRE_EmailInfo" sap:VirtualizedContainerService.HintSize="1496.6666666666667,1906" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | BRE Email Variables" sap:VirtualizedContainerService.HintSize="564,148" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Retrieving BRE email variables and updating any information as needed...&quot;]" />
-    <Assign DisplayName="Assign | Init Empty Attachment Collection" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:LogMessage DisplayName="Log Message | BRE Email Variables" sap:VirtualizedContainerService.HintSize="536,175.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Retrieving BRE email variables and updating any information as needed...&quot;]" />
+    <Assign DisplayName="Assign | Init Empty Attachment Collection" sap:VirtualizedContainerService.HintSize="536,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:List(x:String)">[out_listStr_Attachments]</OutArgument>
       </Assign.To>
@@ -126,28 +126,34 @@
         <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign | BRE Email Subject" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap2010:Annotation.AnnotationText="Mettre un objet d'Email personnalisé pour les BRE selon le projet dans le fichier de Configuration" DisplayName="Assign | BRE Email Subject" sap:VirtualizedContainerService.HintSize="536,160.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_str_EmailSubject]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[In_dict_Config("BRE_Mail_Subject").ToString.Replace("%COLLABORATEUR%",in_str_CandidateName).Replace("%MATRICULE%",in_str_Matricule)]</InArgument>
+        <InArgument x:TypeArguments="x:String">[In_dict_Config("BRE_Mail_Subject").ToString]</InArgument>
       </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="Assign | Set BRE Body" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap2010:Annotation.AnnotationText="Mettre un corps d'email  personnalisé pour les BRE selon le projet dans le fichier de Configuration" DisplayName="Assign | Set BRE Body" sap:VirtualizedContainerService.HintSize="536,160.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_str_EmailBody]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[in_dict_Config("BRE_Mail_CustomMessage").ToString. Replace("%ErrorMessage%", System.Net.WebUtility.HtmlEncode(in_exc_BREException.Message.ToString).ToString).Replace("%ID%", in_str_TransactionID).Replace("%COLLABORATEUR%",in_str_CandidateName)]</InArgument>
+        <InArgument x:TypeArguments="x:String">[in_dict_Config("BRE_Mail_CustomMessage").ToString. Replace("%ErrorMessage%", System.Net.WebUtility.HtmlEncode(in_exc_BREException.Message.ToString).ToString).Replace("%ID%", in_str_TransactionID)]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <If Condition="[Not String.IsNullOrWhitespace(in_str_PathToScreenshot)]" DisplayName="If | Add Screenshot to Attachment Collection" sap:VirtualizedContainerService.HintSize="564,919" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[Not String.IsNullOrWhitespace(in_str_PathToScreenshot)]" DisplayName="If | Add Screenshot to Attachment Collection" sap:VirtualizedContainerService.HintSize="536,812.6666666666666" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -155,19 +161,19 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <If Condition="[System.IO.File.Exists(in_str_PathToScreenshot)]" DisplayName="If | Path to SE Mail Screenshot Exists" sap:VirtualizedContainerService.HintSize="482,643" sap2010:WorkflowViewState.IdRef="If_1">
+        <If Condition="[System.IO.File.Exists(in_str_PathToScreenshot)]" DisplayName="If | Path to SE Mail Screenshot Exists" sap:VirtualizedContainerService.HintSize="502,529.3333333333334" sap2010:WorkflowViewState.IdRef="If_1">
           <If.Then>
-            <AddToCollection x:TypeArguments="x:String" Collection="[out_listStr_Attachments]" DisplayName="Add To Collection | Screenshot" sap:VirtualizedContainerService.HintSize="200,32" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[in_str_PathToScreenshot]" />
+            <AddToCollection x:TypeArguments="x:String" Collection="[out_listStr_Attachments]" DisplayName="Add To Collection | Screenshot" sap:VirtualizedContainerService.HintSize="468,25.333333333333332" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[in_str_PathToScreenshot]" />
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="BRE Failed to Add Screenshot" sap:VirtualizedContainerService.HintSize="400,380" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence DisplayName="BRE Failed to Add Screenshot" sap:VirtualizedContainerService.HintSize="468,342.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message | Add Screenshot Error" sap:VirtualizedContainerService.HintSize="338,148" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Failed to add Screenshot to Business Exception Mail&quot;]" />
-              <Assign DisplayName="Assign | Failure to add Screenshot Note" sap:VirtualizedContainerService.HintSize="338,70" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <ui:LogMessage DisplayName="Log Message | Add Screenshot Error" sap:VirtualizedContainerService.HintSize="434,175.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Failed to add Screenshot to Business Exception Mail&quot;]" />
+              <Assign DisplayName="Assign | Failure to add Screenshot Note" sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_8">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[out_str_EmailBody]</OutArgument>
                 </Assign.To>
@@ -180,7 +186,7 @@
         </If>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="" sap:VirtualizedContainerService.HintSize="400,113" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="502,90" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,7 +195,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <Assign DisplayName="Assign | Email To" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign DisplayName="Assign | Email To" sap:VirtualizedContainerService.HintSize="536,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_str_EmailTo]</OutArgument>
       </Assign.To>
@@ -197,15 +203,15 @@
         <InArgument x:TypeArguments="x:String">[in_dict_Config("BRE_Mail_Receiver").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign | Email CC" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign DisplayName="Assign | Email CC" sap:VirtualizedContainerService.HintSize="536,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_str_EmailCC]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[in_dict_Config("BRE_Mail_ReceiverCC").ToString.Replace("%INIT_PERSON_MAIL%",";"+in_str_initPersonEmail)]</InArgument>
+        <InArgument x:TypeArguments="x:String">[in_dict_Config("BRE_Mail_ReceiverCC").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign | Email CC (delete ; if necessary)" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_9">
+    <Assign DisplayName="Assign | Email CC (delete ; if necessary)" sap:VirtualizedContainerService.HintSize="536,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_str_EmailCC]</OutArgument>
       </Assign.To>
@@ -213,7 +219,7 @@
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(out_str_EmailCC, "(.*);$", "$1")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign | Email BCC" sap:VirtualizedContainerService.HintSize="564,70" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign DisplayName="Assign | Email BCC" sap:VirtualizedContainerService.HintSize="536,107.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_str_EmailBCC]</OutArgument>
       </Assign.To>

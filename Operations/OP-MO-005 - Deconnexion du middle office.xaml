@@ -1,0 +1,205 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Deconnexion" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="io_ui_browser_MO" Type="InArgument(ui:UiElement)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Deconnexion_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.ComponentModel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="OP-MO-005-Deconnexion du middle office" sap:VirtualizedContainerService.HintSize="1065,1556" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Debut Déconnexion du middle office&quot;]" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,1358" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[io_ui_browser_MO]" IsDisplayNameAuto="True" ScopeGuid="3ed4e470-b10e-4c1a-8d16-cb01b7c2f553" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1236" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Username agent'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,194" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3ed4e470-b10e-4c1a-8d16-cb01b7c2f553" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/agent" CVScreenId="5c397b02-5f02-414a-bcca-2f5dedf5165a" DesignTimeRectangle="1679, 219, 199, 66" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='topbar-profile' tag='BUTTON' aria-label='Menu profil' /&gt;" Guid="062db94d-a6c2-491f-b5c6-b056b8731dce" InformativeScreenshot="2d1615aa8961fc7d300e0ef8b9a3c17d.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Cockpit agent — Senyone Bank' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="5c397b02-5f02-414a-bcca-2f5dedf5165a" DesignTimeRectangle="1691, 228, 48, 48" ElementType="Text" FullSelectorArgument="&lt;webctrl parentid='topbar-profile' tag='SPAN' /&gt;" Guid="4ad31718-144e-4377-be22-380e38aa0ae6" SearchSteps="Selector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Se déconnecter'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,194" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3ed4e470-b10e-4c1a-8d16-cb01b7c2f553" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/agent" CVScreenId="5c129c34-9c89-4d7e-9341-1937f55ed368" CvTextArea="1680, 291, 114, 15" CvTextArgument="Se deconnecter" CvType="Text" DesignTimeRectangle="1550, 384, 322, 48" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='logout-button' tag='DIV' aaname='Se déconnecter' innertext='Se déconnecter' visibleinnertext='Se déconnecter' /&gt;" Guid="3f6ce6ee-93fd-45ce-89ba-ff4b6322d7f2" InformativeScreenshot="55aac0a69f717c3b8263dee20a53b003.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Cockpit agent — Senyone Bank' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Complete">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="bff27596-b0dc-4147-9173-f66d3f551a03" CvTextArea="1698, 240, 168, 22" CvTextArgument="CF Cheikh Fall" CvType="Text" DesignTimeRectangle="1698, 240, 169, 22" ElementType="Text" Guid="9684f7f4-a3b7-470a-832f-bfb63380bb3b" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NCheckState DisplayName="Check App State 'Portail Collaborateurs …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,788" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="3ed4e470-b10e-4c1a-8d16-cb01b7c2f553" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Log Out terminé&quot;]" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Log Out non Terminé.&quot;]" />
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="demo.senyone.sn/bank/operateur" DesignTimeRectangle="696, 383, 528, 96" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl tag='H1' aaname='Portail Collaborateurs — Middle Office' innertext='Portail Collaborateurs — Middle Office' visibleinnertext='Portail Collaborateurs — Middle Office' /&gt;" Guid="59fb301f-8307-4049-91a9-237fb738ccfe" ImageBase64="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" InformativeScreenshot="23b9b317f4bd7d2d4e4f83a542f6ab4d.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Portail Collaborateurs — Senyone Bank' /&gt;" SearchSteps="FuzzySelector, Image" Version="V6" WaitForReadyArgument="Complete" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" Version="V3">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.FilePath>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.FilePath>
+          <uix:TargetApp.Selector>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Selector>
+          <uix:TargetApp.Url>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Url>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

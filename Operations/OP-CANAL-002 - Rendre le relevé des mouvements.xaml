@@ -1,0 +1,429 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="OP_CANAL_002___Rendre_le_relevé_des_mouvements" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_str_SoldeComptable" Type="InArgument(x:String)" />
+    <x:Property Name="out_int_SoldeApres" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_int_SoldeAvant" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_int_NombreHorsCanal" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_int_NombreDoublons" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_int_NombreImportees" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_bool_Duplicate" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_bool_Succes" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="in_int_RetryIntervalSeconds" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_int_RetryCount" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_dict_StatutMapping" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_str_MouvementsFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_CbsAccountId" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_ExtractionId" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SyncSecretMachine" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_MiddleOfficeApiBaseUrl" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>OP_CANAL_002___Rendre_le_relevé_des_mouvements_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Web.Activities.Http.Models</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Web.Activities.Http</x:String>
+      <x:String>UiPath.Sdk.Activities</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection.Contracts</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="OP_CANAL_002___Rendre_le_relevé_des_mouvements" sap:VirtualizedContainerService.HintSize="925,4492" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_MotifErreur" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_ErreurDefinitive" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_Succes" />
+      <Variable x:TypeArguments="x:String" Name="str_CorpsReponse" />
+      <Variable x:TypeArguments="x:Int32" Name="int_CodeStatutHttp" />
+      <Variable x:TypeArguments="x:String" Name="str_CorpsJson" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Mouvements" />
+      <Variable x:TypeArguments="x:Int32" Name="int_TentativeCourante" />
+      <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="http_Reponse" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadCsvFile PathResource="{x:Null}" DataTable="[dt_Mouvements]" Delimitator="Semicolon" DelimitatorForViewModel="Semicolon" DisplayName="Lire le CSV des mouvements exportés (OP-BO-008)" Encoding="[System.Text.Encoding.GetEncoding(1252).WebName]" FilePath="[in_str_MouvementsFilePath]" sap:VirtualizedContainerService.HintSize="584,170" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" IgnoreQuotes="False" />
+    <ui:InvokeCode Code="Dim lignes As New List(Of Object)&#xA;Dim soldeAvant As Integer = 0&#xA;Dim soldeApres As Integer = 0&#xA;Dim count As Integer = 0&#xA;Dim totalAmount As Integer = 0&#xA;Dim premiereLigne As Boolean = True&#xA;&#xA;For Each row As System.Data.DataRow In dtMouvements.Rows&#xA;    Dim statutBrut As String = row(&quot;Statut&quot;).ToString().Trim()&#xA;    Dim sensBrut As String = row(&quot;Sens&quot;).ToString().Trim()&#xA;    Dim montant As Integer = Integer.Parse(row(&quot;Montant&quot;).ToString())&#xA;&#xA;    If montant &lt; 0 Then&#xA;        Throw New Exception(&quot;OP-CANAL-002 : montant de ligne négatif détecté, refusé (TXN &quot; &amp; row(&quot;ID TXN&quot;).ToString() &amp; &quot;) : &quot; &amp; montant.ToString())&#xA;    End If&#xA;&#xA;    Dim soldeLigne As Integer = Integer.Parse(row(&quot;Solde&quot;).ToString())&#xA;    Dim delta As Integer = 0&#xA;&#xA;    If statutBrut = &quot;POSTED&quot; Then&#xA;        delta = If(sensBrut = &quot;CRÉDIT&quot;, montant, -montant)&#xA;    End If&#xA;&#xA;    If premiereLigne Then&#xA;        soldeAvant = soldeLigne - delta&#xA;        premiereLigne = False&#xA;    End If&#xA;    soldeApres = soldeLigne&#xA;&#xA;    count += 1&#xA;    If statutBrut = &quot;POSTED&quot; Then&#xA;        totalAmount += delta&#xA;    End If&#xA;&#xA;    If Not statutMapping.ContainsKey(statutBrut) Then&#xA;        Throw New Exception(&quot;OP-CANAL-002 : statut back-office inconnu, non couvert par la table de correspondance : &quot; &amp; statutBrut)&#xA;    End If&#xA;    Dim statutApi As String = statutMapping(statutBrut)&#xA;&#xA;    Dim sensApi As String = If(sensBrut = &quot;CRÉDIT&quot;, &quot;credit&quot;, &quot;debit&quot;)&#xA;&#xA;    Dim origineBrute As String = row(&quot;Origine&quot;).ToString().Trim()&#xA;    Dim origineApi As String&#xA;    Select Case origineBrute&#xA;        Case &quot;VIREMENT EMIS&quot; : origineApi = &quot;virement-emis&quot;&#xA;        Case &quot;VIREMENT RECU&quot; : origineApi = &quot;virement-recu&quot;&#xA;        Case &quot;REGULARISATION&quot; : origineApi = &quot;regularisation&quot;&#xA;        Case Else&#xA;            Throw New Exception(&quot;OP-CANAL-002 : origine back-office inconnue : &quot; &amp; origineBrute)&#xA;    End Select&#xA;&#xA;    Dim refBrut As String = row(&quot;Réf PI-SPI&quot;).ToString().Trim()&#xA;    Dim refPsp As Object&#xA;    If System.Text.RegularExpressions.Regex.IsMatch(refBrut, &quot;^PSP-\d{4}-\d{4}$&quot;) Then&#xA;        refPsp = refBrut&#xA;    Else&#xA;        refPsp = Nothing ' Q-ARR-36 : reference non conforme -&gt; null, pas de blocage&#xA;    End If&#xA;&#xA;    Dim dateHeure As DateTime = DateTime.ParseExact(row(&quot;Date&quot;).ToString() &amp; &quot; &quot; &amp; row(&quot;Heure&quot;).ToString(), &quot;dd/MM/yyyy HH:mm&quot;, System.Globalization.CultureInfo.InvariantCulture)&#xA;&#xA;    Dim ligne As New Dictionary(Of String, Object) From {&#xA;        {&quot;cbsTxnId&quot;, row(&quot;ID TXN&quot;).ToString().Trim()},&#xA;        {&quot;sens&quot;, sensApi},&#xA;        {&quot;amount&quot;, montant},&#xA;        {&quot;statut&quot;, statutApi},&#xA;        {&quot;refPsp&quot;, refPsp},&#xA;        {&quot;origine&quot;, origineApi},&#xA;        {&quot;label&quot;, row(&quot;Libellé&quot;).ToString()},&#xA;        {&quot;createdAt&quot;, dateHeure.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;)}&#xA;    }&#xA;    lignes.Add(ligne)&#xA;Next&#xA;&#xA;If dtMouvements.Rows.Count = 0 Then&#xA;    Dim soldeComptableNettoye As String = System.Text.RegularExpressions.Regex.Replace(soldeComptableStr, &quot;[^\d-]&quot;, &quot;&quot;)&#xA;    Dim soldeComptableInt As Integer = If(String.IsNullOrEmpty(soldeComptableNettoye), 0, Integer.Parse(soldeComptableNettoye))&#xA;    soldeAvant = soldeComptableInt&#xA;    soldeApres = soldeComptableInt&#xA;End If&#xA;&#xA;Dim enveloppe As New Dictionary(Of String, Object) From {&#xA;    {&quot;version&quot;, 1},&#xA;    {&quot;extractionId&quot;, If(String.IsNullOrEmpty(extractionId), CObj(Nothing), extractionId)},&#xA;    {&quot;cbsAccountId&quot;, cbsAccountId},&#xA;    {&quot;soldeAvant&quot;, soldeAvant},&#xA;    {&quot;solde&quot;, soldeApres},&#xA;    {&quot;watermark&quot;, DateTime.UtcNow.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;)},&#xA;    {&quot;count&quot;, count},&#xA;    {&quot;totalAmount&quot;, totalAmount},&#xA;    {&quot;lines&quot;, lignes}&#xA;}&#xA;&#xA;corpsJson = Newtonsoft.Json.JsonConvert.SerializeObject(enveloppe)&#xA;&#xA;soldeAvantOut = soldeAvant&#xA;soldeApresOut = soldeApres" ContinueOnError="False" DisplayName="Invoke Code-Calculer soldeAvant / solde / totalAmount, mapper statuts et construire le JSON du relevé" sap:VirtualizedContainerService.HintSize="584,287" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="dtMouvements">[dt_Mouvements]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="statutMapping">[in_dict_StatutMapping]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="extractionId">[in_str_ExtractionId]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="cbsAccountId">[in_str_CbsAccountId]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="corpsJson">[str_CorpsJson]</OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="soldeAvantOut">[out_int_SoldeAvant]</OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="soldeApresOut">[out_int_SoldeApres]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="soldeComptableStr">[in_str_SoldeComptable]</InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <Assign sap2010:Annotation.AnnotationText="Initialiser le compteur de tentatives à 0&#xD;&#xA;" sap:VirtualizedContainerService.HintSize="584,220" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[int_TentativeCourante]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[Not (bool_Succes OrElse bool_ErreurDefinitive) AndAlso int_TentativeCourante &lt; in_int_RetryCount]" DisplayName="While-Tant que ni succès ni erreur définitive : envoyer le relevé (avec retry)" sap:VirtualizedContainerService.HintSize="584,2456" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+      <ui:InterruptibleWhile.Body>
+        <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="582,2325" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap2010:Annotation.AnnotationText="Incrémenter le compteur de tentatives" sap:VirtualizedContainerService.HintSize="548,206" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[int_TentativeCourante]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[int_TentativeCourante + 1]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <TryCatch DisplayName="Try Catch- POST du relevé au middle-office" sap:VirtualizedContainerService.HintSize="548,1378" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch.Try>
+              <Sequence DisplayName="Essayer" sap:VirtualizedContainerService.HintSize="546,747" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Sequence DisplayName="Sequence-Appeler le middle-office pour déposer le relevé" sap:VirtualizedContainerService.HintSize="512,687" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="None" ContinueOnError="False" DisableSslVerification="False" DisplayName="HTTP Request-/api/sync/statement - Envoyer le relevé (Bearer SyncSecretMachine)" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Authorization&quot;, &quot;Bearer &quot; &amp; in_str_SyncSecretMachine } }]" sap:VirtualizedContainerService.HintSize="478,433" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="POST" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[in_str_MiddleOfficeApiBaseUrl &amp; &quot;/api/sync/statement&quot;]" Result="[http_Reponse]" RetryCount="1" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[str_CorpsJson]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+                    <uwah:NetHttpRequest.TimeoutInMiliseconds>
+                      <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                        <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+                      </InArgument>
+                    </uwah:NetHttpRequest.TimeoutInMiliseconds>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uwah:NetHttpRequest>
+                  <ui:MultipleAssign DisplayName="Multiple Assign-Capturer le code HTTP et le corps de la réponse" sap:VirtualizedContainerService.HintSize="478,171" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Int32">[int_CodeStatutHttp]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Int32">[CInt(http_Reponse.StatusCode)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[str_CorpsReponse]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[http_Reponse.TextContent]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                </Sequence>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Catch - Exception-erreur réseau → simuler un 503 (retry)" sap:VirtualizedContainerService.HintSize="546,406" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="478,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;OP-CANAL-002 : erreur réseau lors de l'appel au middle-office, nouvelle tentative si possible&quot;]" />
+                    <ui:MultipleAssign DisplayName="Multiple Assign - Forcer code 503 après erreur réseau" sap:VirtualizedContainerService.HintSize="478,171" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                      <ui:MultipleAssign.AssignOperations>
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Int32">[int_CodeStatutHttp]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Int32">503</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[str_CorpsReponse]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" Value="" />
+                              </InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                        </scg:List>
+                      </ui:MultipleAssign.AssignOperations>
+                    </ui:MultipleAssign>
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+            <TryCatch.Finally>
+              <Sequence DisplayName="Enfin" sap:VirtualizedContainerService.HintSize="546,90" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </TryCatch.Finally>
+          </TryCatch>
+          <ui:InvokeCode Code="boolSucces = False&#xA;boolErreurDefinitive = False&#xA;boolDuplicate = False&#xA;intNombreImportees = 0&#xA;intNombreDoublons = 0&#xA;intNombreHorsCanal = 0&#xA;strMotifErreur = &quot;&quot;&#xA;&#xA;Select Case intCodeStatutHttp&#xA;    Case 200&#xA;        boolSucces = True&#xA;        Dim reponse As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(strCorpsReponse)&#xA;        If reponse(&quot;duplicate&quot;) IsNot Nothing AndAlso CBool(reponse(&quot;duplicate&quot;)) Then&#xA;            boolDuplicate = True&#xA;        Else&#xA;            intNombreImportees = If(reponse(&quot;nombreImportees&quot;) IsNot Nothing, CInt(reponse(&quot;nombreImportees&quot;)), 0)&#xA;            intNombreDoublons = If(reponse(&quot;nombreDoublons&quot;) IsNot Nothing, CInt(reponse(&quot;nombreDoublons&quot;)), 0)&#xA;            intNombreHorsCanal = If(reponse(&quot;nombreHorsCanal&quot;) IsNot Nothing, CInt(reponse(&quot;nombreHorsCanal&quot;)), 0)&#xA;        End If&#xA;    Case 400&#xA;        boolErreurDefinitive = True&#xA;        strMotifErreur = &quot;SYS-006 : corps invalide (400)&quot;&#xA;    Case 404&#xA;        boolErreurDefinitive = True&#xA;        strMotifErreur = &quot;SYS-010 : arrete ou compte inconnu (404)&quot;&#xA;    Case 422&#xA;        boolErreurDefinitive = True&#xA;        strMotifErreur = &quot;BRE-007 : releve desequilibre (422)&quot;&#xA;    Case 401&#xA;        boolErreurDefinitive = True&#xA;        strMotifErreur = &quot;SYS-007 : secret refuse (401)&quot;&#xA;    Case 503&#xA;        ' rien : la boucle retente si des tentatives restent&#xA;    Case Else&#xA;        boolErreurDefinitive = True&#xA;        strMotifErreur = &quot;Code HTTP inattendu : &quot; &amp; intCodeStatutHttp.ToString()&#xA;End Select" ContinueOnError="False" DisplayName="Invoke Code- Interpréter le code HTTP : succès/doublon (200), SYS-006/007/010, BRE-007 (422), retry (503)" sap:VirtualizedContainerService.HintSize="548,287" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:Int32" x:Key="intCodeStatutHttp">[int_CodeStatutHttp]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="strCorpsReponse">[str_CorpsReponse]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="boolSucces">[bool_Succes]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="boolErreurDefinitive">[bool_ErreurDefinitive]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="boolDuplicate">[out_bool_Duplicate]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="intNombreImportees">[out_int_NombreImportees]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="intNombreDoublons">[out_int_NombreDoublons]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="intNombreHorsCanal">[out_int_NombreHorsCanal]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="strMotifErreur">[str_MotifErreur]</OutArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+          <If Condition="[Not (bool_Succes OrElse bool_ErreurDefinitive) AndAlso int_TentativeCourante &lt; in_int_RetryCount]" DisplayName="If-Attendre puis réessayer ? (échec transitoire et tentatives restantes)" sap:VirtualizedContainerService.HintSize="548,394" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Delay Duration="[TimeSpan.FromSeconds(in_int_RetryIntervalSeconds)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Delay_1" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:InterruptibleWhile.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InterruptibleWhile>
+    <If Condition="[bool_ErreurDefinitive]" DisplayName="If -Erreur définitive ? → lever l'exception adaptée" sap:VirtualizedContainerService.HintSize="584,767" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,538" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[str_MotifErreur.StartsWith(&quot;BRE-007&quot;)]" DisplayName="If-Motif BRE-007 (relevé déséquilibré) ?" sap:VirtualizedContainerService.HintSize="452,478" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw-BRE-007 relevé déséquilibré" Exception="[New UiPath.Core.BusinessRuleException(&quot;OP-CANAL-002 : &quot; &amp; str_MotifErreur)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_3" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw-erreur technique (SYS-006/007/010…)" Exception="[New Exception(&quot;OP-CANAL-002 : &quot; &amp; str_MotifErreur)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_4" />
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <If Condition="[Not bool_Succes AndAlso Not bool_ErreurDefinitive]" DisplayName="If -Tentatives épuisées sans succès ? → lever SYS-008" sap:VirtualizedContainerService.HintSize="584,403" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="Throw - envoi du relevé indisponible après N tentatives" Exception="[New Exception(&quot;SYS-008 : export du relevé indisponible après &quot; &amp; in_int_RetryCount.ToString() &amp; &quot; tentatives&quot;)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Assign DisplayName="Assign-Renvoyer le succès en sortie " sap:VirtualizedContainerService.HintSize="584,166" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">[out_bool_Succes]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">[bool_Succes]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>

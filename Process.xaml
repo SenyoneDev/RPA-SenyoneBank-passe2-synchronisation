@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_qi_transactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Config Dictionary containing all needed configurable information" Name="in_dict_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -33,8 +33,6 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
-      <x:String>GlobalVariablesNamespace</x:String>
-      <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.UIAutomationCore.Contracts</x:String>
       <x:String>System.Runtime.Serialization</x:String>
@@ -47,6 +45,10 @@
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -110,20 +112,194 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="1105,780.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="925,2609" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dict_loanSettings" />
-      <Variable x:TypeArguments="x:String" Name="str_accountNumber" />
-      <Variable x:TypeArguments="x:String" Name="str_fullName" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_AccountInfos" />
-      <Variable x:TypeArguments="x:String" Name="str_aisummary" />
+      <Variable x:TypeArguments="x:String" Name="str_SoldeComptable" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_Duplicate" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Releves" />
+      <Variable x:TypeArguments="x:Int32" Name="int_NombreHorsCanal" />
+      <Variable x:TypeArguments="x:Int32" Name="int_NombreDoublons" />
+      <Variable x:TypeArguments="x:Int32" Name="int_NombreImportees" />
+      <Variable x:TypeArguments="x:String" Name="str_MouvementsFilePath" />
+      <Variable x:TypeArguments="x:String" Name="str_ExtractionId" />
+      <Variable x:TypeArguments="x:String" Name="str_CbsAccountId" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Anomalies" />
+      <Variable x:TypeArguments="x:Int32" Name="int_SoldeAvant" />
+      <Variable x:TypeArguments="x:Int32" Name="int_SoldeApres" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_ExceptionsTechniques" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_SuccesOPCANAL002" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dict_StatutMapping" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:MultipleAssign DisplayName="Lire extractionId + cbsAccountId de l'item et mémoriser ExtractionIdCourant" sap:VirtualizedContainerService.HintSize="480,211" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[str_ExtractionId]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[If(in_qi_transactionItem.SpecificContent.ContainsKey("extractionId"), in_qi_transactionItem.SpecificContent("extractionId").ToString, "")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[str_CbsAccountId]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_qi_transactionItem.SpecificContent("cbsAccountId").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Object">[in_dict_Config("ExtractionIdCourant")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Object">[If(str_ExtractionId &lt;&gt; "", str_ExtractionId, in_dict_Config("ExtractionIdCourant"))]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <Assign DisplayName="Assign-Récupérer dt_Anomalies depuis le dict config" sap:VirtualizedContainerService.HintSize="480,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_Anomalies]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[CType(in_dict_Config("AnomaliesDataTable"), DataTable)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Récupérer dt_ExceptionsTechniques depuis le dict config" sap:VirtualizedContainerService.HintSize="480,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_ExceptionsTechniques]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[CType(in_dict_Config("ExceptionsTechniquesDataTable"), DataTable)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Récupérer dt_Releves depuis le dict config" sap:VirtualizedContainerService.HintSize="480,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_Releves]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[CType(in_dict_Config("RelevesDataTable"), DataTable)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-BO-008 - Exporter les mouvements du compte - Invoke Workflow File (Operations\OP-BO-008 - Exporter les mouvements du compte.xaml)" sap:VirtualizedContainerService.HintSize="480,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Operations\OP-BO-008 - Exporter les mouvements du compte.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_str_SoldeComptable">[str_SoldeComptable]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_str_ExportedFilePath">[str_MouvementsFilePath]</OutArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_ExportRetryIntervalSeconds">[CInt(in_dict_Config("OP_BO_008_ExportRetryIntervalSeconds"))]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_ExportRetryCount">[CInt(in_dict_Config("OP_BO_008_ExportRetryCount"))]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_OutputFolderPath">[in_dict_Config("OutputDataFolderPath").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_ExportLowerBoundDate">[in_dict_Config("OP_BO_008_ExportLowerBoundDate").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_CbsAccountId">[str_CbsAccountId]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_BackOfficeUrl">[in_dict_Config("BackOfficeBaseURL").ToString]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <TryCatch DisplayName="Try Catch-Essayer : rendre le relevé du compte" sap:VirtualizedContainerService.HintSize="480,1673" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="Essayer" sap:VirtualizedContainerService.HintSize="451,799" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Assign-Initialiser dict_StatutMapping" sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[dict_StatutMapping]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
+    {"PENDING", in_dict_Config("StatutMapping_PENDING").ToString()},
+    {"DEBITED_NOT_CONFIRMED", in_dict_Config("StatutMapping_DEBITED_NOT_CONFIRMED").ToString()},
+    {"POSTED", in_dict_Config("StatutMapping_POSTED").ToString()},
+    {"CANCELLED", in_dict_Config("StatutMapping_CANCELLED").ToString()},
+    {"CONTRE-PASSE", in_dict_Config("StatutMapping_CONTRE-PASSE").ToString()}
+}]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="OP-CANAL-002 - Rendre le relevé des mouvements - Invoke Workflow File (Operations\OP-CANAL-002 - Rendre le relevé des mouvements.xaml)" sap:VirtualizedContainerService.HintSize="417,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Operations\OP-CANAL-002 - Rendre le relevé des mouvements.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_SoldeApres">[int_SoldeApres]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_SoldeAvant">[int_SoldeAvant]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_NombreHorsCanal">[int_NombreHorsCanal]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_NombreDoublons">[int_NombreDoublons]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_NombreImportees">[int_NombreImportees]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_Duplicate">[bool_Duplicate]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_Succes">[bool_SuccesOPCANAL002]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_int_RetryIntervalSeconds">[CInt(in_dict_Config("OP_CANAL_002_RetryIntervalSeconds"))]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_int_RetryCount">[CInt(in_dict_Config("OP_CANAL_002_RetryCount"))]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_dict_StatutMapping">[dict_StatutMapping]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_MouvementsFilePath">[str_MouvementsFilePath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_CbsAccountId">[str_CbsAccountId]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_ExtractionId">[str_ExtractionId]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_SyncSecretMachine">[in_dict_Config("SyncSecretMachine").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_MiddleOfficeApiBaseUrl">[in_dict_Config("MiddleOfficeApiBaseUrl").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_SoldeComptable">[str_SoldeComptable]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {str_CbsAccountId, int_NombreImportees, int_NombreDoublons, int_NombreHorsCanal, int_SoldeAvant, int_SoldeApres, Now.ToString(&quot;yyyy-MM-ddTHH:mm:ss&quot;)}]" DataTable="[dt_Releves]" DisplayName="Add Data Row-Journaliser le relevé envoyé dans dt_Releves" sap:VirtualizedContainerService.HintSize="417,221" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+          <Assign DisplayName="Sauvegarder dt_Releves dans le dict config" sap:VirtualizedContainerService.HintSize="417,166" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Object">[in_dict_Config("RelevesDataTable")]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Object">[dt_Releves]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Catch - BusinessRuleException : relevé refusé par le middle-office → dt_Anomalies" sap:VirtualizedContainerService.HintSize="451,329" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{str_CbsAccountId, exception.Message, &quot;BRE-007&quot;}]" DataTable="[dt_Anomalies]" DisplayName="Add Data Row- Enregistrer l'anomalie BRE-007 du compte" sap:VirtualizedContainerService.HintSize="417,221" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+              <Rethrow sap:VirtualizedContainerService.HintSize="417,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Catch - Exception-incident technique → dt_ExceptionsTechniques" sap:VirtualizedContainerService.HintSize="451,329" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {str_CbsAccountId, System.Text.RegularExpressions.Regex.Match(exception.Message, &quot;SYS-\d{3}&quot;).Value, exception.Message}]" DataTable="[dt_ExceptionsTechniques]" DisplayName="Add Data Row-Enregistrer l'exception technique (code SYS-xxx extrait du message)" sap:VirtualizedContainerService.HintSize="417,221" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
+              <Rethrow sap:VirtualizedContainerService.HintSize="417,48" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Enfin" sap:VirtualizedContainerService.HintSize="451,90" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </TryCatch.Finally>
+    </TryCatch>
   </Sequence>
 </Activity>

@@ -1,0 +1,22 @@
+{
+  "assemblyStates": {
+    "C44101F7500_generate.ymnPJDzKqC197oJb4t7ozn": {
+      "namespace": "UiPath.IntegrationService.Activities.SWEntities.C44101F7500_generateTextCompletion_Create.Bundle",
+      "providerName": "CustomEntities",
+      "key": {
+        "name": "UiPath.IntegrationService.Activities.SWEntities.C44101F7500_generateTextCompletion_Create",
+        "hash": "YTdiZUJLeVhNRWpTak9aVHZFYkNnVjU5THE1RTlrV2VGOXU1UzBrZFZyYXIvb2ZsU0c5c29EdnN1Q2ZiZmNFVEI3aDViemlWVDMyRFByK3J1NnFVM0E9PQ",
+        "assemblyName": "C44101F7500_generate.ymnPJDzKqC197oJb4t7ozn"
+      }
+    },
+    "C44101F7500_v2_sub_c.Q4D8gxSJUQ1H7GH2NqqR81": {
+      "namespace": "UiPath.IntegrationService.Activities.SWEntities.C44101F7500_v2_sub_chat_sub_completion_Create.Bundle",
+      "providerName": "CustomEntities",
+      "key": {
+        "name": "UiPath.IntegrationService.Activities.SWEntities.C44101F7500_v2_sub_chat_sub_completion_Create",
+        "hash": "STgyM2NQWnhQSnNyYnJ0bWtaTzVZditBMys0dkM2MXkrak9hV2dlb1pFSEtUNklYR0ZINGlqM1pTSStCQ24wUTV1ME1seFdhRkt6a2hBdUVxWEdLUkE9PQ",
+        "assemblyName": "C44101F7500_v2_sub_c.Q4D8gxSJUQ1H7GH2NqqR81"
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+AcceleratedFramework/CreateLogFile.xaml|639216331727295648
+AcceleratedFramework/CloseAllApplications.xaml|639256776350062686
+AcceleratedFramework/InitAllApplications.xaml|639255793909144486
+AcceleratedFramework/InitAllSettings.xaml|639227550015477660
+AcceleratedFramework/GetEmailInfo/GetSE_EmailInfo.xaml|639216331736934036
+AcceleratedFramework/GetEmailInfo/GetBRE_EmailInfo.xaml|639216331733351117
+AcceleratedFramework/ArchiveTempFiles.xaml|639216331726923630
+AcceleratedFramework/CreateProcessFolders.xaml|639216331727472303
+AcceleratedFramework/LogProcessRunInformation.xaml|639216331728546132
+AcceleratedFramework/KillAllProcesses.xaml|639216331728415913
+AcceleratedFramework/UpdateStatusReport.xaml|639216331732790868
+Dispatcher/Dispatch Input File.xaml|639216331740811160
+AcceleratedFramework/SaveJobsArgumentsToConfig.xaml|639216331729115429
+AcceleratedFramework/RetryCurrentTransaction.xaml|639216331728934474
+Operations/OP-CANAL-002 - Rendre le relevé des mouvements.xaml|639257554011875405
+Operations/OP-CANAL-003 - Publier une étape de déroulé.xaml|639255237464339630
+Operations/OP-CANAL-005 - Déclarer les anomalies de l'exécution.xaml|639255238057720518
+AcceleratedFramework/TakeScreenshot.xaml|639216331729707738
+AcceleratedFramework/SendHTMLEmail.xaml|639237772956721870
+Operations/OP-BO-009 - Se deconnecter au back-office.xaml|639227397532801418
+AcceleratedFramework/GetTransactionData.xaml|639216331727884890
+Operations/OP-BO-001 - Se connecter au back-office.xaml|639250078502780138
+Operations/OP-MO-001-Connexion au middle-office.xaml|639239495123858370
+AcceleratedFramework/SetTransactionStatus.xaml|639216331729474892
+Operations/OP-BO-008 - Exporter les mouvements du compte.xaml|639257546452842701
+Operations/OP-MO-004 - Lire le cockpit d'une extraction.xaml|639239494815723109
+Operations/OP-MO-005 - Deconnexion du middle office.xaml|639253479275366818
+Process.xaml|639257550193129205
+Main.xaml|639265488921123640
+Operations/OP-BO-010_Export.xaml|639253244122497974
+Dispatcher/Dispatch BO Comptes.xaml|639256779356809820
+AcceleratedFramework/Process_WithQueueItemProgress.xaml|639216331728785411
+AcceleratedFramework/GetEmailInfo/GetProcessStarted_EmailInfo.xaml|639216331736752549
+AcceleratedFramework/GetEmailInfo/CreateStatusReportSummary.xaml|639216331733191872
+Operations/Test_NOTIF007_EnvoiMail.xaml|639247291956479598
+AcceleratedFramework/CreateStatusReport.xaml|639216331727683699
+Launch_DispatchBOComptes.xaml|639252643099402639
+GetConfig.xaml|639216331624876192
+Operations/OP-CANAL-004 - Lire l'avancement d'une synchronisation.xaml|639256690749840918
+Operations/Test_OPCANAL004_LireAvancementSynchronisation.xaml|639256823214816863
+Dispatcher/TestDispatcherBO.xaml|639256832441488763
+AcceleratedFramework/CloseAllApplications.xaml|639257568444113355
+AcceleratedFramework/CreateLogFile.xaml|639216331727295648
+AcceleratedFramework/GetEmailInfo/GetSE_EmailInfo.xaml|639216331736934036
+AcceleratedFramework/GetEmailInfo/GetBRE_EmailInfo.xaml|639216331733351117
+AcceleratedFramework/CreateProcessFolders.xaml|639216331727472303
+AcceleratedFramework/ArchiveTempFiles.xaml|639216331726923630
+AcceleratedFramework/InitAllSettings.xaml|639227550015477660
+AcceleratedFramework/InitAllApplications.xaml|639262024367145562
+AcceleratedFramework/SaveJobsArgumentsToConfig.xaml|639216331729115429
+AcceleratedFramework/UpdateStatusReport.xaml|639216331732790868
+AcceleratedFramework/GetTransactionData.xaml|639216331727884890
+AcceleratedFramework/KillAllProcesses.xaml|639216331728415913
+AcceleratedFramework/LogProcessRunInformation.xaml|639216331728546132
+AcceleratedFramework/RetryCurrentTransaction.xaml|639216331728934474
+AcceleratedFramework/SetTransactionStatus.xaml|639216331729474892
+Operations/OP-CANAL-002 - Rendre le relevé des mouvements.xaml|639257554011875405
+Operations/OP-CANAL-003 - Publier une étape de déroulé.xaml|639255237464339630
+Dispatcher/Dispatch BO Comptes.xaml|639264676786939299
+Operations/OP-CANAL-005 - Déclarer les anomalies de l'exécution.xaml|639255238057720518
+AcceleratedFramework/TakeScreenshot.xaml|639216331729707738
+Operations/OP-CANAL-004 - Lire l'avancement d'une synchronisation.xaml|639256690749840918
+Operations/OP-BO-009 - Se deconnecter au back-office.xaml|639227397532801418
+Operations/OP-BO-001 - Se connecter au back-office.xaml|639250078502780138
+Operations/OP-MO-001-Connexion au middle-office.xaml|639239495123858370
+Operations/OP-MO-005 - Deconnexion du middle office.xaml|639253479275366818
+Operations/OP-MO-004 - Lire le cockpit d'une extraction.xaml|639239494815723109
+AcceleratedFramework/SendHTMLEmail.xaml|639237772956721870
+Operations/OP-BO-008 - Exporter les mouvements du compte.xaml|639257546452842701
+Dispatcher/TestDispatcherBO.xaml|639256832441488763

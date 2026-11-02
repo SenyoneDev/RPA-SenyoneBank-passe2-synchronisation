@@ -1,0 +1,8 @@
+{
+  "UiPath.Mail.Activities": "2.10.11",
+  "UiPath.MicrosoftOffice365.Activities": "3.10.10",
+  "UiPath.OCR.Activities": "4.3.0",
+  "UiPath.System.Activities": "26.6.3",
+  "UiPath.UIAutomation.Activities": "26.10.2",
+  "UiPath.WebAPI.Activities": "2.5.2"
+}
